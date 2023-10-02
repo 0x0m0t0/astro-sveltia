@@ -2,12 +2,9 @@ backend:
   name: github
   repo: 0x0m0t0/astro-sveltia
   branch: main
-  site_domain: whimsical-pie-e621ee.netlify.app
+  site_domain: astro-sveltia.vercel.app
   base_url: https://netlify-cms-oauth-eight.vercel.app
 
-site_url: https://whimsical-pie-e621ee.netlify.app/
-
-publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
 
 collections:
