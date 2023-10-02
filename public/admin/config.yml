@@ -4,9 +4,12 @@ backend:
   branch: main
   site_domain: astro-sveltia.vercel.app
   base_url: https://astro-sveltia.vercel.app
+
 site_url: https://astro-sveltia.vercel.app/
+
 publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
+
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI
