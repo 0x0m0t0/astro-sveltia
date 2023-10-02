@@ -4,6 +4,7 @@ backend:
   branch: main
   site_domain: astro-sveltia.vercel.app
   base_url: https://astro-sveltia.vercel.app
+  auth_endpoint: oauth
 
 site_url: https://astro-sveltia.vercel.app/
 

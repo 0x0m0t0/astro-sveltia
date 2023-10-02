@@ -10,6 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.2.2"
+    "astro": "^3.2.2",
+    "simple-oauth2": "~5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "@types/simple-oauth2": "^5.0.2"
   }
 }
