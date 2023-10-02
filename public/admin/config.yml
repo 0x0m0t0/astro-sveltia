@@ -3,8 +3,7 @@ backend:
   repo: 0x0m0t0/astro-sveltia
   branch: main
   site_domain: whimsical-pie-e621ee.netlify.app
-  base_url: https://whimsical-pie-e621ee.netlify.app
-  auth_endpoint: oauth
+  base_url: https://netlify-cms-oauth-eight.vercel.app
 
 site_url: https://whimsical-pie-e621ee.netlify.app/
 
