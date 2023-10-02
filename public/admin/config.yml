@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: github
   repo: 0x0m0t0/astro-sveltia
   branch: main
   site_domain: whimsical-pie-e621ee.netlify.app
