@@ -1,9 +1,11 @@
 backend:
   name: github
   repo: 0x0m0t0/astro-sveltia
-  branch: main
+  # branch: main
+  branch: sveltia-vercel
   site_domain: astro-sveltia.vercel.app
-  base_url: https://netlify-cms-oauth-eight.vercel.app
+  # base_url: https://netlify-cms-oauth-eight.vercel.app
+  base_url: https://sveltia-cms-auth.cheguez.workers.dev
 
 media_folder: "public/images/uploads"
 
