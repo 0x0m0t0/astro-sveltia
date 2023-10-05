@@ -28,7 +28,7 @@ collections:
   - name: "blog"
     label: "Posts"
     label_singular: "Post"
-    folder: "posts"
+    folder: "src/content/posts"
     create: true
     slug: "{{slug}}"
     fields:
