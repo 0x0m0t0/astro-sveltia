@@ -1,7 +1,7 @@
 <h1 align="center">Astro portfolio with Sveltia CMS</h1>
 
 <p align="center">
-  Static site with <a href="https://github.com/sveltia/sveltia-cms">Sveltia</a>, a flat file git-based CMS.
+  Astro with <a href="https://github.com/sveltia/sveltia-cms">Sveltia</a>, a flat file git-based CMS.
 
 </p>
 
