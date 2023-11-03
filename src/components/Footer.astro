@@ -1,0 +1,32 @@
+---
+// type Props ={
+// 	title: string;
+// 	body: string;
+// 	href: string;
+// }
+
+
+function getOrdinalSuffix(day:number) {
+  if (day > 3 && day < 21) return 'th';
+  switch (day) {
+    case 1:  return 'st';
+    case 2:  return 'nd';
+    case 3:  return 'rd';
+    default: return 'th';
+  }
+}
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+
+const date = new Date().toDateString();
+---
+
+<footer class="fixed bottom-0 min-w-full">
+    <p>no cookies. last updated {date}</p> 
+</footer>
+
+
+
