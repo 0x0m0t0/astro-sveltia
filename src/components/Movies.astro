@@ -59,13 +59,13 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
 
     i < 5 ?
  
-    <div class="block rounded-lg bg-white p-6" title={m.title}>
+    <div class="block rounded-lg  p-6" title={m.title}>
         <a href={m.link}> <Image src={m.poster} alt={m.title + `poster`} width={1200} height={2000}/></a>
         <p class="font-bold">{m.stars}</p>
         <a href={m.link}> <h3>{m.title}</h3></a>
         <p>{m.year}</p>
         <p class="text-sm">{humanReadableDate}</p>
-        {m.stars === "★" ||m.stars === "½" ? <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">Avoid</span>:null}
+        {m.stars === "★" ||m.stars === "½" ? <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 dark:text-slate-900">Avoid</span>:null}
     </div>
 
     : null
