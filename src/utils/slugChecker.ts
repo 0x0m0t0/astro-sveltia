@@ -1,39 +1,45 @@
----
+// function getCurrentPageSlug() {
+//   if (window.location.pathname === "/") {
+//     return "home";
+//   } else {
+//     const pathArray = window.location.pathname
+//       .split("/")
+//       .filter((part) => part.trim() !== ""); // Split the URL path
+//     const slug = pathArray[pathArray.length - 1]; // Get the last part as the slug
+//     return slug;
+//   }
+// }
 
-const Links = {
-    home : ".",
-    about: "./about",
-    now: "./now"
-}
-const Linkeys = Object.keys(Links)
-const { slug } = Astro.params;
-console.log(slug)
-import {getNav} from "@/utils/slugChecker.ts"
----
+// const currentSlug = getCurrentPageSlug();
 
+// const checkboxes = document.querySelectorAll('.check input[type="checkbox"]');
 
-<div class="flex">
-{Linkeys.length > 0 ? Linkeys.map((l,index)=>{ 
-    
-    return (
+// checkboxes.forEach((cb) => {
+//   if (cb.id === currentSlug) {
+//     cb.checked = true; // Check the checkbox with the matching ID
+//   }
+// });
 
-    
-            <div class="p-2 check">
-                <a href={ index===0 ? `.` : `./${l}`}>
-                <input type="checkbox" id={l}>
-            </a>
-               
-                <label class="mx-1" for={l}> <a href={ index===0 ? `.` : `./${l}`}>{l} </a></label>
-           
-          
-            </div>
-            
-)}) : null}
-</div>
+// checkboxes.forEach((checkbox) => {
+//   checkbox.addEventListener("click", function (event) {
+//     checkboxes.forEach((cb) => {
+//       const parent = cb.parentElement;
+//       if (cb !== event.target) {
+//         cb.checked = false;
+//         parent.classList.remove("selected");
+//       }
+//     });
 
+//     const parent = event.target.parentElement;
+//     if (event.target.checked) {
+//       parent.classList.add("selected"); // Add class to the clicked checkbox
+//     } else {
+//       parent.classList.remove("selected"); // Remove class if unchecked
+//     }
+//   });
+// });
 
-
-<script>
+export const getNav = () => {
   function getCurrentPageSlug(): string {
     if (window.location.pathname === "/") {
       return "home";
@@ -76,4 +82,5 @@ import {getNav} from "@/utils/slugChecker.ts"
         parent.classList.remove("selected"); // Remove class if unchecked
       }
     });
-  });</script>
+  });
+};
