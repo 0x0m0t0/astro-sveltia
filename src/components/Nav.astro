@@ -6,18 +6,14 @@ const Links = {
     now: "./now"
 }
 const Linkeys = Object.keys(Links)
-const { slug } = Astro.params;
-console.log(slug)
-import {getNav} from "@/utils/slugChecker.ts"
+
 ---
 
 
 <div class="flex">
-{Linkeys.length > 0 ? Linkeys.map((l,index)=>{ 
+{(Linkeys.length > 0 && Linkeys !== undefined )? Linkeys.map((l,index)=>{ 
     
     return (
-
-    
             <div class="p-2 check">
                 <a href={ index===0 ? `.` : `./${l}`}>
                 <input type="checkbox" id={l}>
@@ -46,6 +42,7 @@ import {getNav} from "@/utils/slugChecker.ts"
     }
   }
 
+  function initializeScript() {
   const currentSlug: string = getCurrentPageSlug();
 
   const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
@@ -76,4 +73,7 @@ import {getNav} from "@/utils/slugChecker.ts"
         parent.classList.remove("selected"); // Remove class if unchecked
       }
     });
-  });</script>
+    
+  });}
+  window.onload = initializeScript;
+  </script>
