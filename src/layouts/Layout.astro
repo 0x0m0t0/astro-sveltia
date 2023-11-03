@@ -1,4 +1,9 @@
 ---
+
+import "../assets/styles/reset.css";
+import "../assets/styles/global.css";
+import Navigation from '@/components/Navigation.astro';
+import Footer from "@/components/Footer.astro";
 interface Props {
 	title: string;
 }
@@ -16,9 +21,21 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 	
 		<title>{title}</title>
+		<script is:inline>
+			const theme = localStorage.getItem("theme"),
+				isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			theme === "dark" || (!theme && isSystemDark)
+				? document.documentElement.classList.add("dark")
+				: theme === "light"
+				? document.documentElement.classList.remove("dark")
+				: theme === "system" && isSystemDark && document.documentElement.classList.add("dark");
+		</script>
 	</head>
-	<body>
+
+	<body class="flex flex-col align-between  bg-violet-200 text-slate-900 dark:bg-slate-900 dark:text-slate-50'">
+		<Navigation title={title}/>
 		<slot />
+		<Footer/>
 	</body>
 </html>
 <style is:global>
@@ -54,3 +71,4 @@ const { title } = Astro.props;
 		max-height: 50vh;
 	}
 </style>
+

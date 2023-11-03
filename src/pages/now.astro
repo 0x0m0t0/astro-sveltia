@@ -1,0 +1,33 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+import Movies from '../components/Movies.astro';
+---
+<Layout title="now page">
+
+	<main>
+        <h1>Now</h1>
+        <section>
+            <ol>
+                <li>Reading Burning Chrome by William Gibson</li>
+                <li>Practicing my Typescript</li>
+                <li>Drinking too much coffee</li>
+                <li>Trying to index my library and make it reachable by API</li>
+            </ol>
+        </section>
+		<section class="flex items-center justify-between">
+		
+			<Movies />
+		</section>
+	
+	</main>
+</Layout>
+
+<style>
+    main {
+        padding: 2rem;
+    }
+    ol, ul {
+	list-style:circle;
+}
+</style>
