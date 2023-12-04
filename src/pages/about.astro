@@ -1,6 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
+
+import { getCollection } from 'astro:content'
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+// Example: retrieve `src/content/blog/**`
+const allBlogPosts = await getCollection('posts')
+console.log(allBlogPosts)
 ---
 
 <Layout title="About oxomoto">
@@ -11,6 +19,15 @@ import Card from '../components/Card.astro'
 			<p class="text-xl">Brussels based. Site is being updated. ꩜</p>
 
 			<p class="text-xl">Open for freelance work & collaboration starting Q2 2024🟢</p>
+			<p>{allBlogPosts[0].data.summary}</p>
+			<p>{allBlogPosts[0].slug}</p>
+			<ul>
+				{
+					allBlogPosts[0].data.tags.map((el) => {
+						return <li>{el}</li>
+					})
+				}
+			</ul>
 		</section>
 	</main>
 </Layout>
