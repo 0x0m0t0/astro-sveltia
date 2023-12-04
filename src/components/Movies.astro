@@ -1,97 +1,102 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets'
 const api = import.meta.env.APIURI
 const token = import.meta.env.APITOKEN
 const response = await fetch(api, {
-   method: 'GET',
-   headers: {
-       'Authorization': 'Bearer ' + token
-   }
-});
+	method: 'GET',
+	headers: {
+		Authorization: 'Bearer ' + token
+	}
+})
 
 if (!response.ok) {
-   throw new Error(`HTTP error! status: ${response.status}`);
+	throw new Error(`HTTP error! status: ${response.status}`)
 }
 
-
-const data = await response.json();
+const data = await response.json()
 const movies = await data.response
 
 interface Movie {
-  title: string;
-  year: number;
-  stars: string;
-  link: string;
-  poster: any;
-  watchedOn: string;
+	title: string
+	year: number
+	stars?: string
+	link: string
+	poster?: any
+	watchedOn: string
 }
 
-function getOrdinalSuffix(day:number) {
-  if (day > 3 && day < 21) return 'th';
-  switch (day) {
-    case 1:  return 'st';
-    case 2:  return 'nd';
-    case 3:  return 'rd';
-    default: return 'th';
-  }
+function getOrdinalSuffix(day: number) {
+	if (day > 3 && day < 21) return 'th'
+	switch (day) {
+		case 1:
+			return 'st'
+		case 2:
+			return 'nd'
+		case 3:
+			return 'rd'
+		default:
+			return 'th'
+	}
 }
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-
+const monthNames = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+]
 ---
 
-
 <section class="movies flex flex-col">
-  
-  <h2 class="underline">Last 5 movies</h2>
-  <div class="flex flex-row">
-{ movies.length > 0 ? movies.map((m:Movie, i:number) => {
-        const date = new Date(m.watchedOn);
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const suffix = getOrdinalSuffix(day)
-        const monthName = monthNames[month - 1];
-        const humanReadableDate = `${day}${suffix} of ${monthName} ${date.getFullYear()}`;
-    return (
-
-    i < 5 ?
- 
-    <div class="block rounded-lg  p-6" title={m.title}>
-        <a href={m.link}> <Image src={m.poster} alt={m.title + `poster`} width={1200} height={2000}/></a>
-        <p class="font-bold">{m.stars}</p>
-        <a href={m.link}> <h3>{m.title}</h3></a>
-        <p>{m.year}</p>
-        <p class="text-sm">{humanReadableDate}</p>
-        {m.stars === "★" ||m.stars === "½" ? <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 dark:text-slate-900">Avoid</span>:null}
-    </div>
-
-    : null
-)}) : null }
-</div>
+	<h2 class="underline">Last 5 movies</h2>
+	<div class="flex flex-row flex-wrap">
+		{
+			movies.length > 0
+				? movies.map((m: Movie, i: number) => {
+						const date = new Date(m.watchedOn)
+						const day = date.getDate()
+						const month = date.getMonth() + 1
+						const suffix = getOrdinalSuffix(day)
+						const monthName = monthNames[month - 1]
+						const humanReadableDate = `${day}${suffix} of ${monthName} ${date.getFullYear()}`
+						return i < 5 ? (
+							<div class=" w-1/2 rounded-lg p-6 sm:w-full" title={m.title}>
+								<a class="flex flex-col" href={m.link}>
+									{m.poster ? (
+										<Image src={m?.poster} alt={m.title + `poster`} width={200} height={2000} />
+									) : (
+										<Image
+											src="/public/assets/placeholder/pattern_checkerboard.png"
+											alt="Checkerboard Pattern"
+											width={200}
+											height={2000}
+										/>
+									)}
+								</a>
+								{m.stars ? <p class="h-6 font-bold">{m?.stars}</p> : <p class="h-6"> {` `}</p>}
+								<a href={m.link}>
+									{' '}
+									<h3>{m.title}</h3>
+								</a>
+								<p>{m.year}</p>
+								<p class="text-sm">{humanReadableDate}</p>
+								{m?.stars === '★' || m.stars === '½' ? (
+									<span class="text-primary-700 inline-block whitespace-nowrap rounded-[0.27rem] bg-red-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none dark:text-slate-900">
+										Avoid
+									</span>
+								) : null}
+							</div>
+						) : null
+				  })
+				: null
+		}
+	</div>
 </section>
-
-<style>
-    .movies {
-        display:flex;
-        max-width: 60vw;
-    }
-    .movies div {
-        padding:1rem;
-        white-space: normal;
-        text-align: center;
-    }
-    h3 {
-  height:auto;
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-
-    }
-    img {
-        max-height: 200px;
-        width:auto;
-    }
-</style>

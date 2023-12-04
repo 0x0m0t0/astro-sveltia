@@ -1,16 +1,14 @@
 ---
-
-import "../assets/styles/reset.css";
-import "../assets/styles/global.css";
-import Navigation from '@/components/Navigation.astro';
-import Footer from "@/components/Footer.astro";
-import Header from '@/components/Header.astro';
+import '../assets/styles/reset.css'
+import '../assets/styles/global.css'
+import Footer from '@/components/Footer.astro'
+import Header from '@/components/Header.astro'
 
 interface Props {
-	title: string;
+	title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <!doctype html>
@@ -21,56 +19,24 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-	
+
 		<title>{title}</title>
 		<script is:inline>
-			const theme = localStorage.getItem("theme"),
-				isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-			theme === "dark" || (!theme && isSystemDark)
-				? document.documentElement.classList.add("dark")
-				: theme === "light"
-				? document.documentElement.classList.remove("dark")
-				: theme === "system" && isSystemDark && document.documentElement.classList.add("dark");
+			const theme = localStorage.getItem('theme'),
+				isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+			theme === 'dark' || (!theme && isSystemDark)
+				? document.documentElement.classList.add('dark')
+				: theme === 'light'
+				? document.documentElement.classList.remove('dark')
+				: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
 		</script>
 	</head>
 
-	<body class="flex flex-col align-between  bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-		<Header/>
+	<body
+		class="align-between flex h-screen flex-col bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100"
+	>
+		<Header />
 		<slot />
-		<Footer/>
+		<Footer />
 	</body>
 </html>
-<style is:global>
-	:root {
-		padding: 0;
-		margin:0;
-		box-sizing: border-box;
-		font-size: 12px;
-	}
-	html {
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		padding: 0;
-		margin:0;
-		box-sizing: border-box;
-		font-size: 12px;
-	}
-	body {
-		padding: 1rem;
-		display: flex;
-	}
- a {
-	cursor: pointer;
-	color:inherit;
-	text-decoration: none;
- }
-	code {
-		font-family:
-			Menlo,
-			Courier New,
-			monospace;
-	}
-	img{
-		max-height: 50vh;
-	}
-</style>
-

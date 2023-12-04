@@ -1,79 +1,103 @@
 ---
-
-const Links = {
-    home : ".",
-    about: "./about",
-    now: "./now"
-}
-const Linkeys = Object.keys(Links)
-
+const Links = [
+	{
+		path: '/',
+		label: 'Home'
+	},
+	{
+		path: '/about',
+		label: 'About'
+	},
+	{
+		path: '/now',
+		label: 'Now'
+	}
+]
 ---
 
-
 <div class="flex">
-{(Linkeys.length > 0 && Linkeys !== undefined )? Linkeys.map((l,index)=>{ 
-    
-    return (
-            <div class="p-2 check">
-                <a href={ index===0 ? `.` : `./${l}`}>
-                <input type="checkbox" id={l}>
-            </a>
-               
-                <label class="mx-1" for={l}> <a href={ index===0 ? `.` : `./${l}`}>{l} </a></label>
-           
-          
-            </div>
-            
-)}) : null}
+	{
+		Links.length > 0
+			? Links.map((l) => {
+					return (
+						<a
+							href={l.path}
+							class:list={[
+								{
+									relative: true,
+									'bg-green-400': l.path === Astro.url.pathname
+								}
+							]}
+						>
+							<div class="check checkbox-wrapper-47">
+								<label class="" for={l.label}>
+									{l.label}
+								</label>
+							</div>
+						</a>
+					)
+			  })
+			: null
+	}
 </div>
 
+<style>
+	.check {
+		padding-left: 1em;
+	}
 
+	.checkbox-wrapper-47 label {
+		position: relative;
+		padding-left: 3em;
+		padding-right: 1em;
+		line-height: 2;
+		cursor: pointer;
+		display: inline-flex;
+		/* margin-left: 1em; */
+	}
 
-<script>
-  function getCurrentPageSlug(): string {
-    if (window.location.pathname === "/") {
-      return "home";
-    } else {
-      const pathArray: string[] = window.location.pathname
-        .split("/")
-        .filter((part) => part.trim() !== ""); // Split the URL path
-      const slug: string = pathArray[pathArray.length - 1]; // Get the last part as the slug
-      return slug;
-    }
-  }
+	.checkbox-wrapper-47 label:before {
+		box-sizing: border-box;
+		content: ' ';
+		position: absolute;
+		top: 0.3em;
+		left: 0;
+		display: block;
+		width: 1em;
+		height: 1em;
+		border: 1px solid rgb(3, 223, 3);
+		border-radius: 1px;
+		z-index: -1;
+	}
 
-  function initializeScript() {
-  const currentSlug: string = getCurrentPageSlug();
+	.checkbox-wrapper-47 input[type='checkbox']:checked + label {
+		padding-left: 2em;
+		padding-right: 3em;
+		color: #0f5229;
+		border: 0px;
+	}
+	.checkbox-wrapper-47 input[type='checkbox']:checked + label:before {
+		top: 0;
+		width: 100%;
+		height: 2em;
+		background: #b7e6c9;
+		border-color: #2cbc63;
+		border: 0px;
+	}
+	.checkbox-wrapper-47:first-child input[type='checkbox']:checked + label:before {
+		margin-left: -1em;
+	}
 
-  const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
-    '.check input[type="checkbox"]'
-  );
+	.checkbox-wrapper-47 label,
+	.checkbox-wrapper-47 label::before {
+		transition: 0.25s all ease;
+	}
 
-  checkboxes.forEach((cb: HTMLInputElement) => {
-    if (cb.id === currentSlug) {
-      cb.checked = true; // Check the checkbox with the matching ID
-    }
-  });
-
-  checkboxes.forEach((checkbox: HTMLInputElement) => {
-    checkbox.addEventListener("click", function (event: Event) {
-      checkboxes.forEach((cb: HTMLInputElement) => {
-        const parent: HTMLElement = cb.parentElement as HTMLElement;
-        if (cb !== event.target) {
-          cb.checked = false;
-          parent.classList.remove("selected");
-        }
-      });
-
-      const parent: HTMLElement = (event.target as HTMLInputElement)
-        .parentElement as HTMLElement;
-      if ((event.target as HTMLInputElement).checked) {
-        parent.classList.add("selected"); // Add class to the clicked checkbox
-      } else {
-        parent.classList.remove("selected"); // Remove class if unchecked
-      }
-    });
-    
-  });}
-  window.onload = initializeScript;
-  </script>
+	.current-page {
+		padding-left: 3em;
+		padding-right: 3em;
+		color: #0f5229;
+		border: 0px;
+		border-color: #2cbc63;
+	}
+</style>
