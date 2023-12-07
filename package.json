@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/vercel": "^6.0.1",
     "astro": "^3.2.2",
     "astro-icon": "^0.8.1",
     "install": "^0.13.0",
