@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 
 import { getCollection } from 'astro:content'
+import Newsletter from '@/components/Newsletter.astro'
 
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
@@ -11,15 +12,15 @@ const allBlogPosts = await getCollection('posts')
 console.log(allBlogPosts)
 ---
 
-<Layout title="About oxomoto">
+<Layout title="about oxomoto">
 	<main class="">
 		<section class="flex flex-col">
-			<p class="text-xl">oxomoto is the design & development practice of Louis Desmet.</p>
-
-			<p class="text-xl">Brussels based. Site is being updated. ꩜</p>
-
-			<p class="text-xl">Open for freelance work & collaboration starting Q2 2024🟢</p>
-			<p>{allBlogPosts[0].data.summary}</p>
+			<p class="col-span-3 col-start-1 text-gray-500 md:col-start-4">
+				design practice and development practice of Louis Desmet. Brussels based.
+				<br />Open for freelance work & collaboration starting Q2 2024🟢<br /> For inquiries get in
+				touch at <a class="text-blue-600" href="mailto:info@oxomoto.co">info@oxomoto.co</a>
+			</p>
+			<!-- <p>{allBlogPosts[0].data.summary}</p>
 			<p>{allBlogPosts[0].slug}</p>
 			<ul>
 				{
@@ -27,7 +28,8 @@ console.log(allBlogPosts)
 						return <li>{el}</li>
 					})
 				}
-			</ul>
+			</ul> -->
+			<Newsletter />
 		</section>
 	</main>
 </Layout>

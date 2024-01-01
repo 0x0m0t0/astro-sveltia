@@ -1,9 +1,16 @@
 ---
 import Nav from '@/components/Nav.astro'
-import Darkmode from '@/components/Darkmode.astro'
 ---
 
-<header class="flex justify-between">
+<header class="grid w-full grid-cols-4 gap-4 p-4 md:grid-cols-8">
+	<h1>oxomoto</h1>
+	<div class="">
+		<p>designer</p><p>creative developer</p>
+	</div>
+	<p class="col-span-3 col-start-1 text-gray-500 md:col-start-4">
+		design practice and development practice of Louis Desmet. Brussels based.
+		<br />Open for freelance work & collaboration starting Q2 2024🟢<br /> For inquiries get in
+		touch at <a class="text-blue-600" href="mailto:info@oxomoto.co">info@oxomoto.co</a>
+	</p>
 	<Nav />
-	<Darkmode />
 </header>
