@@ -16,29 +16,26 @@ const Links = [
 ]
 ---
 
-<div class="col-start-4 flex flex-col gap-2 text-gray-500 md:col-start-8">
-	{
-		Links.length > 0
-			? Links.map((l) => {
-					return (
-						<a
-							href={l.path}
-							class:list={[
-								{
-									relative: true,
-									'text-black': l.path === Astro.url.pathname
-								}
-							]}
-						>
-							<div class="check checkbox-wrapper-47">
-								<label class="" for={l.label}>
+<div class="absolute right-0 top-0 p-4 text-gray-500 dark:text-slate-200">
+	<ul>
+		{
+			Links.length > 0
+				? Links.map((l) => {
+						return (
+							<li class="pb-2">
+								<a
+									href={l.path}
+									class={`relative ${
+										l.path === Astro.url.pathname ? 'text-black dark:text-slate-600' : ''
+									}`}
+								>
 									{l.label}
-								</label>
-							</div>
-						</a>
-					)
-			  })
-			: null
-	}
+								</a>
+							</li>
+						)
+				  })
+				: null
+		}
+	</ul>
 	<Darkmode />
 </div>

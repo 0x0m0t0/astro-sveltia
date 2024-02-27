@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import AboutContent from '@/content/about/AboutContent.astro'
 import Card from '../components/Card.astro'
+import { AboutLinks } from '@/content/about/Links.ts'
 
 import { getCollection } from 'astro:content'
 import Newsletter from '@/components/Newsletter.astro'
@@ -13,13 +15,12 @@ console.log(allBlogPosts)
 ---
 
 <Layout title="about oxomoto">
-	<main class="">
-		<section class="flex flex-col">
-			<p class="col-span-3 col-start-1 text-gray-500 md:col-start-4">
-				design practice and development practice of Louis Desmet. Brussels based.
-				<br />Open for freelance work & collaboration starting Q2 2024🟢<br /> For inquiries get in
-				touch at <a class="text-blue-600" href="mailto:info@oxomoto.co">info@oxomoto.co</a>
-			</p>
+	<main>
+		<section class="grid w-full grid-cols-4 gap-4 pt-4 md:grid-cols-8">
+			<div class="col-span-3 col-start-1">
+				<AboutContent />
+			</div>
+
 			<!-- <p>{allBlogPosts[0].data.summary}</p>
 			<p>{allBlogPosts[0].slug}</p>
 			<ul>
@@ -29,7 +30,23 @@ console.log(allBlogPosts)
 					})
 				}
 			</ul> -->
-			<Newsletter />
 		</section>
+		<section class="pt-12">
+			<ul aria-label="about links"></ul>
+			{
+				AboutLinks.map((link) => {
+					return (
+						<li>
+							{link.label}:{' '}
+							<a href={link.path} class="hover:underline">
+								{link.handle}
+							</a>
+						</li>
+					)
+				})
+			}
+		</section>
+
+		<Newsletter />
 	</main>
 </Layout>

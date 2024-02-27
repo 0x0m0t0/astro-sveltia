@@ -56,9 +56,9 @@ const monthNames = [
 ]
 ---
 
-<section class="movies flex flex-col">
+<section class="movies flex flex-col pt-12">
 	<h2 class="underline">Last 5 movies</h2>
-	<div class="flex flex-row flex-wrap">
+	<ul class="flex flex-wrap">
 		{
 			movies.length > 0
 				? movies.map((m: Movie, i: number) => {
@@ -69,23 +69,26 @@ const monthNames = [
 						const monthName = monthNames[month - 1]
 						const humanReadableDate = `${day}${suffix} of ${monthName} ${date.getFullYear()}`
 						return i < 5 ? (
-							<div class=" w-1/2 rounded-lg p-6 sm:w-full" title={m.title}>
-								<a class="flex flex-col" href={m.link}>
+							<li
+								class="flex w-[200px] flex-col flex-wrap  px-2 pb-8 first:pl-0 last:pr-0"
+								title={m.title}
+							>
+								<a class="h-[300px]" href={m.link}>
 									{m.poster ? (
-										<Image src={m?.poster} alt={m.title + `poster`} width={200} height={2000} />
+										<Image src={m?.poster} alt={m.title + `poster`} width={200} height={300} />
 									) : (
 										<Image
 											src="/public/assets/placeholder/pattern_checkerboard.png"
 											alt="Checkerboard Pattern"
 											width={200}
-											height={2000}
+											height={300}
 										/>
 									)}
 								</a>
 								{m.stars ? <p class="h-6 font-bold">{m?.stars}</p> : <p class="h-6"> {` `}</p>}
 								<a href={m.link}>
 									{' '}
-									<h3>{m.title}</h3>
+									<h3 class="inline-block">{m.title}</h3>
 								</a>
 								<p>{m.year}</p>
 								<p class="text-sm">{humanReadableDate}</p>
@@ -94,10 +97,10 @@ const monthNames = [
 										Avoid
 									</span>
 								) : null}
-							</div>
+							</li>
 						) : null
 				  })
 				: null
 		}
-	</div>
+	</ul>
 </section>

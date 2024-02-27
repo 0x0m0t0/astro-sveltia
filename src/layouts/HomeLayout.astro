@@ -2,8 +2,7 @@
 import '../assets/styles/reset.css'
 import '../assets/styles/global.css'
 import Footer from '@/components/Footer.astro'
-import SecHeader from '@/components/SecHeader.astro'
-import Nav from '@/components/Nav.astro'
+import Header from '@/components/Header.astro'
 
 interface Props {
 	title: string
@@ -34,9 +33,9 @@ const { title } = Astro.props
 	</head>
 
 	<body
-		class="align-between dark:bg-dark flex h-screen flex-col bg-slate-50 p-4 pt-0 text-gray-500 dark:text-slate-200"
+		class="align-between dark:bg-dark flex h-screen flex-col bg-slate-50 text-slate-900 dark:text-slate-200"
 	>
-		<SecHeader />
+		<Header />
 		<slot />
 		<Footer />
 	</body>
