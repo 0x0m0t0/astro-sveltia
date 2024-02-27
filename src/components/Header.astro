@@ -1,9 +1,15 @@
 ---
 import Nav from '@/components/Nav.astro'
-import Darkmode from '@/components/Darkmode.astro'
+import AboutContent from '@/content/about/AboutContent.astro'
 ---
 
-<header class="flex justify-between">
+<header class="grid w-full grid-cols-4 gap-4 p-4 md:grid-cols-8">
+	<h1>oxomoto</h1>
+	<div class="col-span-2 md:col-span-1">
+		<p>designer</p><p>creative developer</p>
+	</div>
+	<div class="col-span-3 col-start-1 text-gray-500 md:col-start-4">
+		<AboutContent />
+	</div>
 	<Nav />
-	<Darkmode />
 </header>
