@@ -157,14 +157,14 @@ collections:
         fields:
           - {
               label: 'Description',
-               name: 'body',
-          widget: 'markdown',
-          hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
-        }
+              name: 'body',
+              widget: 'markdown',
+              hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
+            }
           - {
               label: 'Links',
-               name: 'body',
-               widget: 'markdown',
+              name: 'body',
+              widget: 'markdown',
               hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
-          }
+            }
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }
