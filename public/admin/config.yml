@@ -148,10 +148,10 @@ collections:
   - name: 'about'
     label: 'About'
     icon: 'about'
-    extension: 'yml'
-    format: 'yml'
+    extension: 'md'
+    format: 'markdown'
     files:
-      - file: '_data/about.yml'
+      - file: ''src/content/about/about.md'
         label: 'About Page'
         name: 'site'
         fields:

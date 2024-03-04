@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import AboutContent from '@/content/about/AboutContent.astro'
-import Card from '../components/Card.astro'
-import { AboutLinks } from '@/content/about/Links.ts'
+import AboutContent from '@/components/AboutContent.astro'
+import { AboutLinks } from '@/components/Links'
 
 import { getCollection } from 'astro:content'
 import Newsletter from '@/components/Newsletter.astro'
@@ -10,8 +9,8 @@ import Newsletter from '@/components/Newsletter.astro'
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
 // Example: retrieve `src/content/blog/**`
-const allBlogPosts = await getCollection('posts')
-console.log(allBlogPosts)
+const about = await getCollection('about')
+console.log(about)
 ---
 
 <Layout title="about oxomoto">
@@ -50,3 +49,4 @@ console.log(allBlogPosts)
 		<Newsletter />
 	</main>
 </Layout>
+ ../components/Links
