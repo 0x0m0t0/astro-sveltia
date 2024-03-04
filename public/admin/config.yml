@@ -145,3 +145,26 @@ collections:
               hint: "Your site's description, used for SEO."
             }
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }
+  - name: 'about'
+    label: 'About'
+    icon: 'about'
+    extension: 'yml'
+    format: 'yml'
+    files:
+      - file: '_data/about.yml'
+        label: 'About Page'
+        name: 'site'
+        fields:
+          - {
+              label: 'Description',
+               name: 'body',
+          widget: 'markdown',
+          hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
+        }
+          - {
+              label: 'Links',
+               name: 'body',
+               widget: 'markdown',
+              hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
+          }
+          - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }
