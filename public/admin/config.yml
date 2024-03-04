@@ -1,8 +1,8 @@
 backend:
   name: github
   repo: 0x0m0t0/astro-sveltia
-  # branch: main
-  branch: sveltia-vercel
+  branch: main
+  # branch: sveltia-vercel
   site_domain: astro-sveltia.vercel.app
   # base_url: https://netlify-cms-oauth-eight.vercel.app
   base_url: https://sveltia-cms-auth.cheguez.workers.dev
@@ -163,7 +163,7 @@ collections:
             }
           - {
               label: 'Links',
-              name: 'body',
+              name: 'links',
               widget: 'markdown',
               hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
             }
