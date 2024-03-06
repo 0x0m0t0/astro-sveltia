@@ -159,10 +159,5 @@ collections:
               widget: 'markdown',
               hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
             }
-          - {
-              label: 'Links',
-              name: 'links',
-              widget: 'markdown',
-              hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
-            }
+          - { label: 'Links', name: 'links', widget: 'list', hint: 'Array List' }
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }

@@ -33,7 +33,7 @@ const aboutCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		links: z.string(),
+		links: z.array(z.string()),
 		url: z.string()
 	})
 })
