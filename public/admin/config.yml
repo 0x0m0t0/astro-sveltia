@@ -153,6 +153,7 @@ collections:
         label: 'About Page'
         name: 'about'
         fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
           - {
               label: 'Description',
               name: 'body',
