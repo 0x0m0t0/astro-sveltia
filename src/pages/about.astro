@@ -1,43 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import AboutContent from '@/components/AboutContent.astro'
-import { AboutLinks } from '@/components/Links'
-
 import { getCollection } from 'astro:content'
 import Newsletter from '@/components/Newsletter.astro'
 
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
-// Example: retrieve `src/content/blog/**`
 const about = await getCollection('about')
-console.log(about)
+const data = about[0]
 ---
 
 <Layout title="about oxomoto">
 	<main>
 		<section class="grid w-full grid-cols-4 gap-4 pt-4 md:grid-cols-8">
 			<div class="col-span-3 col-start-1">
-				<AboutContent />
+				<p>
+					{data.body}
+				</p>
+				<p>
+					For inquiries get in touch at ↗
+					<!-- simple obfuscation to avoid spam bots -->
+					<a href="mailto:i%6efo@oxomoto%2eco" class="text-blue-600">
+						info
+						<span class="at"></span>
+						<span class="dom"></span>
+					</a>
+				</p>
 			</div>
-
-			<!-- <p>{allBlogPosts[0].data.summary}</p>
-			<p>{allBlogPosts[0].slug}</p>
-			<ul>
-				{
-					allBlogPosts[0].data.tags.map((el) => {
-						return <li>{el}</li>
-					})
-				}
-			</ul> -->
 		</section>
 		<section class="pt-12">
 			<ul aria-label="about links"></ul>
 			{
-				AboutLinks.map((link) => {
+				data.data.links.map((link) => {
 					return (
 						<li>
 							{link.label}:{' '}
-							<a href={link.path} class="hover:underline">
+							<a href={link.url} class="hover:underline">
 								{link.handle}
 							</a>
 						</li>
@@ -49,4 +44,14 @@ console.log(about)
 		<Newsletter />
 	</main>
 </Layout>
- ../components/Links
+<style>
+	:root {
+		--mydom: 'oxomoto.co';
+	}
+	.at:before {
+		content: '@';
+	}
+	.dom:after {
+		content: var(--mydom);
+	}
+</style>

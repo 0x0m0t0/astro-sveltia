@@ -104,7 +104,8 @@ collections:
     label: 'Authors'
     label_singular: 'Author'
     icon: 'person'
-    folder: 'authors'
+    # folder: 'authors'
+    folder: 'src/content/authors'
     create: true
     slug: '{{slug}}'
     fields:
@@ -159,10 +160,12 @@ collections:
               widget: 'markdown',
               hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
             }
-          - {
-              label: 'Links',
-              name: 'links',
-              widget: 'markdown',
-              hint: 'Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
-            }
+          - label: 'Links'
+            name: 'links'
+            widget: 'list'
+            fields:
+              - { label: 'Label', name: 'label', widget: 'string' }
+              - { label: 'URL', name: 'url', widget: 'string' }
+              - { label: 'Handle', name: 'handle', widget: 'string' }
+            hint: 'List of links'
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }

@@ -1,6 +1,12 @@
+---
+import { getCollection } from 'astro:content'
+
+const about = await getCollection('about')
+const data = about[0]
+---
+
 <p>
-	design and development practice of Louis Desmet. Brussels based. Open for freelance work &
-	collaboration starting Q2 2024 🟢.
+	{data.body}
 </p>
 <p>
 	For inquiries get in touch at ↗
@@ -11,7 +17,6 @@
 		<span class="dom"></span>
 	</a>
 </p>
-
 <style>
 	:root {
 		--mydom: 'oxomoto.co';
