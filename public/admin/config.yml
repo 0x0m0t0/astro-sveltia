@@ -151,7 +151,7 @@ collections:
     # icon: 'about'
     files:
       - file: 'src/content/about/about.md'
-        label: 'About Page'
+        label: 'About'
         name: 'about'
         fields:
           - {
@@ -169,3 +169,15 @@ collections:
               - { label: 'Handle', name: 'handle', widget: 'string' }
             hint: 'List of links'
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }
+  - name: 'now'
+    label: 'Now'
+    files:
+      - file: 'src/content/now/now.md'
+        label: 'Now'
+        name: 'now'
+        fields:
+          - label: 'Activities'
+            name: 'activities'
+            widget: 'list'
+            fields:
+              - { label: 'Activity', name: 'activity', widget: 'string' }

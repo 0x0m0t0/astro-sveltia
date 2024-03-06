@@ -1,6 +1,10 @@
 ---
 export const prerender = false // update movies api
 
+import { getCollection } from 'astro:content'
+
+const now = await getCollection('now')
+
 import Layout from '../layouts/Layout.astro'
 import Movies from '../components/Movies.astro'
 ---
@@ -8,15 +12,12 @@ import Movies from '../components/Movies.astro'
 <Layout title="now page">
 	<main class="flex flex-col gap-4 pt-4">
 		<section>
-			<ol>
-				<li>
-					Reading <a href="https://literal.club/oxomoto/book/the-silk-roads-bqgcy">The Silk Roads</a
-					> by Peter Frankopan
-				</li>
-				<li>Practicing my Typescript & Svelte</li>
-				<li>Drinking too much coffee</li>
-				<li>Trying to index my library and make it reachable by API</li>
-			</ol>
+			<ul aria-label="about links"></ul>
+			{
+				now[0].data.activities.map((a) => {
+					return <li>{a.activity}</li>
+				})
+			}
 		</section>
 		<section class="flex items-center justify-between">
 			<Movies />

@@ -5,6 +5,9 @@ const linkSchema = z.object({
 	url: z.string(),
 	handle: z.string()
 })
+const activitiesSchema = z.object({
+	activity: z.string()
+})
 
 const postsCollection = defineCollection({
 	type: 'content',
@@ -30,6 +33,13 @@ const authorsCollection = defineCollection({
 	})
 })
 
+const nowCollection = defineCollection({
+	type: 'content',
+	schema: z.object({
+		activities: z.array(activitiesSchema)
+	})
+})
+
 const aboutCollection = defineCollection({
 	type: 'content',
 	schema: z.object({
@@ -42,5 +52,6 @@ const aboutCollection = defineCollection({
 export const collections = {
 	posts: postsCollection,
 	about: aboutCollection,
+	now: nowCollection,
 	authors: authorsCollection
 }
