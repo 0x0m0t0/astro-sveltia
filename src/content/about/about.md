@@ -1,8 +1,6 @@
 ---
 title: About Page
-links:
-  - post
-url: Your URL here
+links: Links
+url: site.com
 ---
-
 Your about page content goes here...
