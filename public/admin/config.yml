@@ -147,13 +147,11 @@ collections:
           - { label: 'Site URL', name: 'url', widget: 'string', hint: "Your live site's full URL." }
   - name: 'about'
     label: 'About'
-    icon: 'about'
-    extension: 'md'
-    format: 'markdown'
+    # icon: 'about'
     files:
       - file: 'src/content/about/about.md'
         label: 'About Page'
-        name: 'site'
+        name: 'about'
         fields:
           - {
               label: 'Description',
