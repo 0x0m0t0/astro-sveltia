@@ -31,8 +31,7 @@ const postsCollection = defineCollection({
 const aboutCollection = defineCollection({
 	type: 'content',
 	schema: z.object({
-		description: z.string(),
-		links: z.string(),
+		links: z.array(z.string()),
 		url: z.string()
 	})
 })
