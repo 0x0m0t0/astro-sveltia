@@ -27,16 +27,19 @@ const { title } = Astro.props
 			theme === 'dark' || (!theme && isSystemDark)
 				? document.documentElement.classList.add('dark')
 				: theme === 'light'
-				  ? document.documentElement.classList.remove('dark')
-				  : theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
+					? document.documentElement.classList.remove('dark')
+					: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
 		</script>
 	</head>
 
 	<body
-		class="align-between dark:bg-dark flex h-screen flex-col bg-slate-50 text-slate-900 dark:text-slate-200"
+		class="align-between bg-mauve-50 text-darkSand flex h-screen flex-col dark:bg-dark dark:text-darkText"
 	>
 		<Header />
 		<slot />
-		<Footer />
+
+		<footer class="mt-auto w-full p-4">
+			<Footer />
+		</footer>
 	</body>
 </html>

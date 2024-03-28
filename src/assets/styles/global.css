@@ -6,10 +6,21 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-size: 12px;
 }
+
+@font-face {
+	font-family: 'mariupolregular';
+	src:
+		url('/assets/fonts/mariupol-regular-webfont.woff2') format('woff2'),
+		url('/assets/fonts/mariupol-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 html {
 	font-family:
+		'mariupolregular',
 		system-ui,
 		-apple-system,
 		BlinkMacSystemFont,
@@ -24,7 +35,8 @@ html {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-size: 12px;
+	font-size: 15px;
+	line-height: 1.4;
 }
 body {
 	display: flex;

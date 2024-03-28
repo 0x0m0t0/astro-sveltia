@@ -16,7 +16,7 @@ const Links = [
 ]
 ---
 
-<div class="absolute right-0 top-0 p-4 text-gray-500 dark:text-slate-200">
+<div class="text-darkSand absolute right-0 top-0 p-4 dark:text-darkText">
 	<ul>
 		{
 			Links.length > 0
@@ -26,14 +26,16 @@ const Links = [
 								<a
 									href={l.path}
 									class={`relative ${
-										l.path === Astro.url.pathname ? 'text-black dark:text-slate-600' : ''
+										l.path === Astro.url.pathname
+											? 'text-darkSand text-opacity-40 dark:text-darkText dark:text-opacity-40'
+											: ''
 									}`}
 								>
 									{l.label}
 								</a>
 							</li>
 						)
-				  })
+					})
 				: null
 		}
 	</ul>

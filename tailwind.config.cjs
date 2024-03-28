@@ -9,8 +9,11 @@ module.exports = {
 			//   sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
 			// },
 			colors: {
-				dark: '#0E1013',
-				darkText: 'slate-200'
+				mauve: '#FDFCFD',
+				darkSand: '#21201C',
+				dark: '#161613',
+				darkText: '#E8E8E8',
+				tomato: '#DD4425'
 			}
 		}
 	},

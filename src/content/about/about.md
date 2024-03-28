@@ -18,4 +18,6 @@ links:
     handle: "@oxomoto@post.lurk.org"
 url: oxomoto.co
 ---
-design and development practice of Louis Desmet. Brussels based. Open for freelance work & collaboration starting Q2 2024 🟢.
+
+Design and development practice of Louis Desmet. Brussels based.
+Open for freelance work & collaboration starting Q2 2024 🟢.
