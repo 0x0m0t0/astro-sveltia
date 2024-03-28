@@ -1,0 +1,24 @@
+{
+	"name": "astro-sveltia",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"sync": "astro sync",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/tailwind": "5.1.0",
+		"@astrojs/vercel": "^7.5.0",
+		"astro": "4.5.10",
+		"astro-icon": "1.1.0",
+		"install": "^0.13.0",
+		"prettier": "^3.0.3",
+		"prettier-plugin-astro": "^0.13.0",
+		"prettier-plugin-tailwindcss": "^0.5.6",
+		"tailwindcss": "^3.4.1"
+	}
+}
