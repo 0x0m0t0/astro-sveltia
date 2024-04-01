@@ -5,6 +5,5 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
 	output: 'hybrid',
 	adapter: vercel(),
-
 	integrations: [tailwind()]
 })
