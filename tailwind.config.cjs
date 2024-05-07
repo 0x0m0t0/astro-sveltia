@@ -14,6 +14,10 @@ module.exports = {
 				dark: '#161613',
 				darkText: '#E8E8E8',
 				tomato: '#DD4425'
+			},
+			aspectRatio: {
+				'4/3': '4 / 3',
+				'2/3': '2 / 3'
 			}
 		}
 	},
