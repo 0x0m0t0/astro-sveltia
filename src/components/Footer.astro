@@ -6,7 +6,7 @@
 // }
 
 const counterscale: string = import.meta.env.COUNTERSCALE_URI
-const unislug: string = import.meta.env.UNIQUE_SLUG
+// const unislug: string = import.meta.env.UNIQUE_SLUG
 
 function getOrdinalSuffix(day: number) {
 	if (day > 3 && day < 21) return 'th'
@@ -47,7 +47,7 @@ const date = new Date().toDateString()
 <script is:inline>
 	;(function () {
 		window.counterscale = {
-			q: [['set', 'siteId', unislug], ['trackPageview']]
+			q: [['set', 'siteId', 'rqqja62zGxwE7RmRLVIOvOEetM'], ['trackPageview']]
 		}
 	})()
 </script>
