@@ -5,6 +5,9 @@
 // 	href: string;
 // }
 
+const counterscale: string = import.meta.env.COUNTERSCALE_URI
+const unislug: string = import.meta.env.UNIQUE_SLUG
+
 function getOrdinalSuffix(day: number) {
 	if (day > 3 && day < 21) return 'th'
 	switch (day) {
@@ -40,3 +43,12 @@ const date = new Date().toDateString()
 <p>
 	No cookies. Last updated <span>{date}</span>
 </p>
+
+<script is:inline>
+	;(function () {
+		window.counterscale = {
+			q: [['set', 'siteId', unislug], ['trackPageview']]
+		}
+	})()
+</script>
+<script id="counterscale-script" src=`${counterscale}/tracker.js` defer></script>
