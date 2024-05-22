@@ -5,6 +5,7 @@
 // 	href: string;
 // }
 
+import Darkmode from './Darkmode.astro'
 const counterscale: string = import.meta.env.COUNTERSCALE_URI
 // const unislug: string = import.meta.env.UNIQUE_SLUG
 
@@ -40,10 +41,10 @@ const monthNames = [
 const date = new Date().toDateString()
 ---
 
-<p>
+<!-- <p>
 	No cookies. Last updated <span>{date}</span>
-</p>
-
+</p> -->
+<Darkmode />
 <script is:inline>
 	;(function () {
 		window.counterscale = {

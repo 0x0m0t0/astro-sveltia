@@ -1,13 +1,15 @@
 ---
-import HomeLayout from '@/layouts/HomeLayout.astro'
+import Layout from '@/layouts/Layout.astro'
+// import HomeLayout from '@/layouts/Layout.astro'
+import Carousel from '@/components/Carousel.astro'
 ---
 
-<HomeLayout title="oxomoto">
+<Layout title="oxomoto" class="h-screen">
 	<!--
 		-- maybe some ascii--
 		-- --- -- test -- --- -
  	!-->
 	<main class="">
-		<section class="flex items-center justify-between"></section>
+		<Carousel />
 	</main>
-</HomeLayout>
+</Layout>

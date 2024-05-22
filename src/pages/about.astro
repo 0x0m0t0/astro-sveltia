@@ -7,19 +7,27 @@ const about = await getCollection('about')
 const data = about[0]
 ---
 
-<Layout title="about oxomoto">
-	<main>
-		<section class="grid w-full grid-cols-4 gap-4 pt-4 md:grid-cols-8">
+<Layout title="About oxomoto" class="h-screen">
+	<main class="flex h-full flex-col justify-between px-4">
+		<section class="max-w-[900px]">
+			<h2 class="text-stone-400">about</h2>
 			<div class="col-span-3 col-start-1">
 				<p>
 					{data.body}
+					<span class="relative inline-flex h-3 w-3">
+						<span
+							class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-80"
+						></span>
+						<span class="relative inline-flex h-3 w-3 rounded-full bg-green-300"></span>
+					</span>
 				</p>
+
 				<p>
 					For inquiries get in touch at ↗
 					<!-- simple obfuscation to avoid spam bots -->
 					<a
 						href="mailto:i%6efo@oxomoto%2eco"
-						class="hover:bg-tomato hover:text-mauve text-blue-600"
+						class="text-blue-600 hover:text-darkSand hover:underline"
 					>
 						info
 						<span class="at"></span>
@@ -27,21 +35,26 @@ const data = about[0]
 					</a>
 				</p>
 			</div>
-		</section>
-		<section class="pt-12">
-			<ul aria-label="about links"></ul>
-			{
-				data.data.links.map((link) => {
-					return (
-						<li>
-							{link.label}:{' '}
-							<a href={link.url} class="hover:bg-tomato hover:text-mauve">
-								{link.handle}
-							</a>
-						</li>
-					)
-				})
-			}
+
+			<h3 class="pt-8 text-stone-400">links</h3>
+			<ul aria-label="about links">
+				{
+					data.data.links.map((link) => {
+						return (
+							<li>
+								<div class="has-tooltip">
+									{/* <span class="tooltip ml-2 inline-block rounded border bg-gray-100 p-1 shadow-lg">
+										{link.handle}
+									</span> */}
+									<a href={link.url} class="hover:text-darkSand hover:underline">
+										{link.label}
+									</a>
+								</div>
+							</li>
+						)
+					})
+				}
+			</ul>
 		</section>
 
 		<Newsletter />
