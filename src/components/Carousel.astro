@@ -16,17 +16,16 @@ console.log(testdata)
 			testdata.length > 0
 				? testdata.map((data: Data) => {
 						return (
-							<li class="keen-slider__slide flex w-full cursor-pointer flex-col items-center justify-end pb-8">
+							<li class="keen-slider__slide flex max-h-full w-full cursor-pointer flex-col items-center justify-end pb-8">
 								<Image
 									src={data.url}
 									alt={data.title + `poster`}
-									width={600}
+									width={1200}
 									height={600}
-									class="aspect-4/3 max-h-[600px] rounded-md object-contain"
+									class="aspect-4/3 h-full rounded-md object-contain"
 								/>
-
 								<h3 class="pt-2">{data.title}</h3>
-								{/* <p class="px-16">{data.description}</p> */}
+								<p class="px-16">{data.description}</p>
 							</li>
 						)
 					})
@@ -42,7 +41,11 @@ console.log(testdata)
 		flex-direction: column;
 		height: calc(100dvh - 72px);
 		width: 100%;
+		/* border: 1px solid red; */
 		flex-wrap: nowrap;
+	}
+	.keen-slider li {
+		overflow: hidden;
 	}
 </style>
 
