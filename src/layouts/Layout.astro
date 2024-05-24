@@ -40,11 +40,8 @@ const { title, class: className, ...rest } = Astro.props
 		]}
 		{...rest}
 	>
-		<!-- class=`${className} align-between bg-mauve-50 flex flex-col text-darkSand dark:bg-dark dark:text-darkText` -->
 		<Header />
 		<slot />
-		<!-- <div class="absolute bottom-0 left-0"> -->
 		<Footer />
-		<!-- </div> -->
 	</body>
 </html>
