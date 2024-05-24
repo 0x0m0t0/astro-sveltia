@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrollable Canvas</title>
+		<style>
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+			canvas {
+				display: block;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="scrollCanvas"></canvas>
+
+		<script>
+			// Get the canvas element
+			var canvas = document.getElementById('scrollCanvas')
+			var ctx = canvas.getContext('2d')
+
+			// Set canvas dimensions
+			canvas.width = window.innerWidth
+			canvas.height = window.innerHeight
+
+			// Load the image
+			var img = new Image()
+			img.src =
+				'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Canetti_Peak.jpg/1920px-Canetti_Peak.jpg'
+			img.onload = function () {
+				draw()
+			}
+
+			// Draw function
+			function draw() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+				// Calculate the transformation parameters based on scroll position
+				var scrollY = window.scrollY
+				var trapeziumHeight = Math.min(canvas.height / 2, scrollY * 1.5)
+				var cylinderRadius = Math.min(canvas.width / 2, scrollY * 0.3)
+
+				// Draw the image with transformation
+				ctx.save()
+				ctx.beginPath()
+				ctx.moveTo(0, 0)
+				ctx.lineTo(canvas.width, 0)
+				ctx.lineTo(canvas.width, canvas.height - trapeziumHeight)
+				ctx.lineTo(0, canvas.height)
+				ctx.closePath()
+				ctx.clip()
+				ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+				ctx.restore()
+
+				// Draw the curved top
+				ctx.save()
+				ctx.beginPath()
+				ctx.arc(canvas.width / 2, trapeziumHeight, cylinderRadius, 0, Math.PI * 2)
+				ctx.clip()
+				ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+				ctx.restore()
+			}
+
+			// Redraw on scroll
+			window.addEventListener('scroll', function () {
+				draw()
+			})
+
+			// Redraw on window resize
+			window.addEventListener('resize', function () {
+				canvas.width = window.innerWidth
+				canvas.height = window.innerHeight
+				draw()
+			})
+		</script>
+	</body>
+</html>
