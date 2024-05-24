@@ -40,8 +40,10 @@ const { title, class: className, ...rest } = Astro.props
 		]}
 		{...rest}
 	>
-		<Header />
-		<slot />
+		<div class="container flex w-full flex-col md:flex-row">
+			<Header />
+			<slot />
+		</div>
 		<Footer />
 	</body>
 </html>

@@ -1,15 +1,88 @@
 ---
 import Nav from '@/components/Nav.astro'
 import AboutContent from '@/components/AboutContent.astro'
+
+let show: boolean = false
+
+console.log(show)
 ---
 
-<header class="flex justify-between gap-8 px-4 py-2">
-	<div>
+<header class="m-2 w-full max-w-[calc(100vw-1rem)] gap-2 md:max-w-[20vw]">
+	<!-- <header class="flex justify-between gap-8 px-4 py-2"> -->
+	<!-- <div>
 		<a href="/"><h1>oxomoto</h1></a>
 		<div class="flex gap-2">
 			<p>designer</p>
 			<p>creative developer</p>
 		</div>
 	</div>
-	<Nav />
+	<Nav /> -->
+
+	<button id="togglez" class="btn">
+		<h1 class="">OXOMOTO</h1>
+	</button>
+
+	<nav id="navz" class="flex hidden w-auto max-w-full flex-col gap-2 pt-2 md:max-w-[20vw]">
+		<p class="btn">ABOUT</p>
+
+		<a class="btn" href="/now">NOW</a>
+
+		<a class="btn" href="/">INDEX</a>
+
+		<p class="desc">Design and development practice.</p>
+	</nav>
 </header>
+
+<script>
+	const menu = document.getElementById('togglez')
+	const navz = document.getElementById('navz')
+	console.log(menu)
+	menu?.addEventListener('click', () => {
+		navz?.classList.toggle('hidden')
+		menu.classList.toggle('show')
+		console.log('menu hidden')
+	})
+</script>
+
+<style>
+	.btn {
+		display: block;
+		padding: 0.25rem 0 2rem 0.25rem;
+		width: 20vw;
+		background: rgb(168, 162, 158);
+		text-align: left;
+		border-top: 2px solid rgb(229, 229, 229);
+		border-right: 2px solid rgb(46, 46, 46);
+		border-bottom: 2px solid rgb(46, 46, 46);
+		border-left: 2px solid rgb(229, 229, 229);
+	}
+
+	.btn:hover {
+		border-top: 2px solid rgb(177, 177, 177);
+		border-right: 2px solid rgb(33, 33, 33);
+		border-bottom: 2px solid rgb(33, 33, 33);
+		border-left: 2px solid rgb(177, 177, 177);
+	}
+	.btn:active {
+		border-color: rgb(207, 207, 207);
+	}
+	#togglez.show {
+		border-color: rgb(130, 130, 130) rgb(130, 130, 130) rgb(229, 229, 229) rgb(229, 229, 229);
+	}
+	.desc {
+		border-top: 2px dotted black;
+		padding-top: 2px;
+		width: 20vw;
+		max-width: 20vw;
+	}
+
+	/* @media (max-width: 768px) {
+		.btn {
+			width: 100%;
+		}
+		.desc {
+			width: 100%;
+			max-width: 100%;
+		}
+	} */
+</style>
