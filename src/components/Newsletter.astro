@@ -6,7 +6,12 @@
 		onsubmit="window.open(`https://buttondown.email/oxomoto`, `popupwindow`)"
 		class="embeddable-buttondown-form"
 	>
-		<input type="email" name="email" id="bd-email" class="rounded bg-slate-200" />
+		<input
+			type="email"
+			name="email"
+			id="bd-email"
+			class="rounded bg-slate-200 pl-2 text-dark dark:text-dark"
+		/>
 		<input
 			type="submit"
 			value="Subscribe"
@@ -17,3 +22,11 @@
 		</label>
 	</form>
 </section>
+
+<style>
+	input:focus-visible {
+		outline-color: rgb(168 162 158);
+		outline-style: dashed;
+		outline-width: 2px;
+	}
+</style>

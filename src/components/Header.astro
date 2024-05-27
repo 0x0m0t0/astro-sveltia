@@ -1,46 +1,84 @@
 ---
-import Nav from '@/components/Nav.astro'
-import AboutContent from '@/components/AboutContent.astro'
+const Links = [
+	{
+		path: '/',
+		label: 'INDEX'
+	},
+	{
+		path: '/about',
+		label: 'ABOUT'
+	},
+	{
+		path: '/now',
+		label: 'NOW'
+	},
+	// {
+	// 	path: '/contact',
+	// 	label: 'CONTACT'
+	// },
+	// { path: '/projects', label: 'Projects' },
 
-let show: boolean = false
-
-console.log(show)
+	{
+		label: 'Design and development practice.'
+	}
+]
 ---
 
 <header class="m-2 w-full max-w-[calc(100vw-1rem)] gap-2 md:max-w-[20vw]">
-	<!-- <header class="flex justify-between gap-8 px-4 py-2"> -->
-	<!-- <div>
-		<a href="/"><h1>oxomoto</h1></a>
-		<div class="flex gap-2">
-			<p>designer</p>
-			<p>creative developer</p>
-		</div>
-	</div>
-	<Nav /> -->
-
-	<button id="togglez" class="btn">
+	<button
+		id="togglez"
+		class="btn hover:bg-dark hover:text-mauve hover:dark:bg-mauve hover:dark:text-dark"
+	>
 		<h1 class="">OXOMOTO</h1>
 	</button>
 
-	<nav id="navz" class="flex hidden w-auto max-w-full flex-col gap-2 pt-2 md:max-w-[20vw]">
-		<p class="btn">ABOUT</p>
+	<nav
+		id="navz"
+		class="flex hidden w-auto max-w-full flex-col gap-2 bg-mauve pt-2 dark:bg-dark md:max-w-[20vw]"
+	>
+		{
+			Links.length > 0
+				? Links.map((l, i) => {
+						if (l.path === undefined) {
+							return (
+								<p
+									class="desc w-full border-t border-dashed border-gray-300 bg-mauve dark:bg-dark"
+									style={`--order: ${i};`}
+								>
+									{l.label}{' '}
+								</p>
+							)
+						}
 
-		<a class="btn" href="/now">NOW</a>
-
-		<a class="btn" href="/">INDEX</a>
-
-		<p class="desc">Design and development practice.</p>
+						return (
+							<a href={l.path} class="btn" style={`--order: ${i};`}>
+								{l.label}
+							</a>
+						)
+					})
+				: null
+		}
 	</nav>
 </header>
 
 <script>
 	const menu = document.getElementById('togglez')
 	const navz = document.getElementById('navz')
-	console.log(menu)
+
+	let show = false
 	menu?.addEventListener('click', () => {
-		navz?.classList.toggle('hidden')
+		show = !show
 		menu.classList.toggle('show')
-		console.log('menu hidden')
+
+		if (!show) {
+			navz?.classList.add('animate-out')
+			setTimeout(() => {
+				navz?.classList.add('hidden')
+			}, navz?.children.length * 100)
+		} else {
+			navz?.classList.remove('hidden')
+			navz?.classList.remove('animate-out')
+		}
 	})
 </script>
 
@@ -49,7 +87,6 @@ console.log(show)
 		display: block;
 		padding: 0.25rem 0 2rem 0.25rem;
 		width: 20vw;
-		background: rgb(168, 162, 158);
 		text-align: left;
 		border-top: 2px solid rgb(229, 229, 229);
 		border-right: 2px solid rgb(46, 46, 46);
@@ -70,13 +107,45 @@ console.log(show)
 		border-color: rgb(130, 130, 130) rgb(130, 130, 130) rgb(229, 229, 229) rgb(229, 229, 229);
 	}
 	.desc {
-		border-top: 2px dotted black;
 		padding-top: 2px;
 		width: 20vw;
 		max-width: 20vw;
 	}
+	#navz .btn,
+	.desc {
+		opacity: 0;
+		animation: stagger ease-in 0.4s forwards 1;
+		animation-delay: calc(var(--order) * 0.1s);
+	}
+	#navz.animate-out {
+		animation: stagger-out ease-in 0.4s forwards 1;
+		animation-delay: calc(var(--order) * 0.1s);
+	}
+	@keyframes stagger {
+		from {
+			opacity: 0;
+			transform: translateY(80px);
+		}
 
-	/* @media (max-width: 768px) {
+		to {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	@keyframes stagger-out {
+		from {
+			opacity: 1;
+			transform: translateY(40px);
+		}
+
+		to {
+			opacity: 0;
+			transform: translateY(0px);
+		}
+	}
+
+	@media (max-width: 768px) {
 		.btn {
 			width: 100%;
 		}
@@ -84,5 +153,11 @@ console.log(show)
 			width: 100%;
 			max-width: 100%;
 		}
-	} */
+		#navz {
+			position: absolute;
+			width: calc(100vw - 1rem);
+			height: 100%;
+			z-index: 100;
+		}
+	}
 </style>

@@ -7,10 +7,10 @@ const about = await getCollection('about')
 const data = about[0]
 ---
 
-<Layout title="About oxomoto" class="h-screen">
+<Layout title="About oxomoto" class="h-screen pt-2">
 	<main class="flex h-full flex-col justify-between px-4">
 		<section class="max-w-[900px]">
-			<h2 class="text-stone-400">about</h2>
+			<h2 class="pt-2 text-stone-400">about</h2>
 			<div class="col-span-3 col-start-1">
 				<p>
 					{data.body}

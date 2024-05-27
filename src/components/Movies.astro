@@ -57,7 +57,10 @@ const monthNames = [
 ---
 
 <section class="movies flex flex-col pt-12">
-	<h2 class="pb-2 text-stone-400">Last logged movies</h2>
+	<div class="flex gap-2 pb-2">
+		<h2 class="text-stone-400">last seen</h2>
+		<a href="https://letterboxd.com/oxomoto/" class="underline">on letterboxd</a>
+	</div>
 	<ul class="flex flex-wrap gap-4">
 		{
 			movies.length > 0
@@ -112,6 +115,10 @@ const monthNames = [
 </section>
 
 <style>
+	p {
+		width: 100%;
+		word-wrap: break-word;
+	}
 	.movie {
 		width: calc(20% - 1rem);
 		max-width: 240px;
@@ -119,7 +126,7 @@ const monthNames = [
 
 	@media (max-width: 768px) {
 		.movie {
-			width: calc(50% - 1rem);
+			width: calc(33.33% - 1rem);
 			max-width: 50vw;
 		}
 	}
