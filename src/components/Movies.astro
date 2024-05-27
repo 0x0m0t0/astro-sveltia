@@ -57,8 +57,11 @@ const monthNames = [
 ---
 
 <section class="movies flex flex-col pt-12">
-	<h2 class="underline">Last 5 movies</h2>
-	<ul class="flex flex-wrap">
+	<div class="flex gap-2 pb-2">
+		<h2 class="text-stone-400">last seen</h2>
+		<a href="https://letterboxd.com/oxomoto/" class="underline">on letterboxd</a>
+	</div>
+	<ul class="flex flex-wrap gap-4">
 		{
 			movies.length > 0
 				? movies.map((m: Movie, i: number) => {
@@ -69,22 +72,21 @@ const monthNames = [
 						const monthName = monthNames[month - 1]
 						const humanReadableDate = `${day}${suffix} of ${monthName} ${date.getFullYear()}`
 						return i < 5 ? (
-							<li class="flex flex-col flex-wrap px-2 pb-8 first:pl-0 last:pr-0" title={m.title}>
+							<li class="movie flex flex-col flex-wrap pb-8" title={m.title}>
 								<a href={m.link}>
 									{m.poster ? (
 										<Image
 											src={m?.poster}
 											alt={m.title + `poster`}
-											width={200}
-											height={300}
+											inferSize={true}
 											class="aspect-2/3 rounded-sm object-cover"
 										/>
 									) : (
 										<Image
 											src="/public/assets/placeholder/pattern_checkerboard.png"
 											alt="Checkerboard Pattern"
-											width={200}
-											height={300}
+											width={auto}
+											height={auto}
 											class="aspect-2/3 rounded-sm"
 										/>
 									)}
@@ -111,3 +113,21 @@ const monthNames = [
 		}
 	</ul>
 </section>
+
+<style>
+	p {
+		width: 100%;
+		word-wrap: break-word;
+	}
+	.movie {
+		width: calc(20% - 1rem);
+		max-width: 240px;
+	}
+
+	@media (max-width: 768px) {
+		.movie {
+			width: calc(33.33% - 1rem);
+			max-width: 50vw;
+		}
+	}
+</style>

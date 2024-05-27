@@ -1,10 +1,10 @@
 ---
 import Darkmode from './Darkmode.astro'
 const Links = [
-	{
-		path: '/',
-		label: 'Home'
-	},
+	// {
+	// 	path: '/',
+	// 	label: 'Home'
+	// },
 	{
 		path: '/about',
 		label: 'About'
@@ -16,8 +16,8 @@ const Links = [
 ]
 ---
 
-<nav class="absolute right-0 top-0 p-4 text-darkSand dark:text-darkText">
-	<ul>
+<nav class="flex gap-2 text-darkSand dark:text-darkText">
+	<ul class="flex gap-2">
 		{
 			Links.length > 0
 				? Links.map((l) => {
@@ -39,5 +39,5 @@ const Links = [
 				: null
 		}
 	</ul>
-	<Darkmode />
+	<!-- <Darkmode /> -->
 </nav>

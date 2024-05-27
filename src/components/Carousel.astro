@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets'
+import testdata from '/public/assets/test/testdata.json'
+
+interface Data {
+	url: string
+	title: string
+	description: string
+}
+console.log(testdata)
+---
+
+<section class="">
+	<ul id="slider" class="keen-slider">
+		{
+			testdata.length > 0
+				? testdata.map((data: Data) => {
+						return (
+							<li class="keen-slider__slide flex max-h-full w-full cursor-pointer flex-col items-center justify-end pb-8">
+								<Image
+									src={data.url}
+									alt={data.title + `poster`}
+									width={1200}
+									height={600}
+									class="aspect-4/3 h-full rounded-md object-contain"
+								/>
+								<h3 class="pt-2">{data.title}</h3>
+								<p class="px-16">{data.description}</p>
+							</li>
+						)
+					})
+				: null
+		}
+	</ul>
+</section>
+
+<style>
+	.keen-slider {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		height: calc(100dvh - 72px);
+		width: 100%;
+		/* border: 1px solid red; */
+		flex-wrap: nowrap;
+	}
+	.keen-slider li {
+		overflow: hidden;
+	}
+</style>
+
+<script>
+	import KeenSlider, { type KeenSliderInstance } from 'keen-slider'
+	let slider: KeenSliderInstance
+
+	function WheelControls(slider) {
+		var touchTimeout
+		var position
+		var wheelActive
+
+		function dispatch(e, name) {
+			position.x -= e.deltaX
+			position.y -= e.deltaY
+			slider.container.dispatchEvent(
+				new CustomEvent(name, {
+					detail: {
+						x: position.x,
+						y: position.y
+					}
+				})
+			)
+		}
+
+		function wheelStart(e) {
+			position = {
+				x: e.pageX,
+				y: e.pageY
+			}
+			dispatch(e, 'ksDragStart')
+		}
+
+		function wheel(e) {
+			dispatch(e, 'ksDrag')
+		}
+
+		function wheelEnd(e) {
+			dispatch(e, 'ksDragEnd')
+		}
+
+		function eventWheel(e) {
+			e.preventDefault()
+			if (!wheelActive) {
+				wheelStart(e)
+				wheelActive = true
+			}
+			wheel(e)
+			clearTimeout(touchTimeout)
+			touchTimeout = setTimeout(() => {
+				wheelActive = false
+				wheelEnd(e)
+			}, 50)
+		}
+
+		slider.on('created', () => {
+			slider.container.addEventListener('wheel', eventWheel, {
+				passive: false
+			})
+		})
+	}
+
+	slider = new KeenSlider(
+		'#slider',
+		{
+			loop: true,
+			mode: 'snap',
+			slides: {
+				perView: 1,
+				origin: 'center',
+				spacing: 0
+			},
+			vertical: true
+		},
+		[WheelControls]
+	)
+</script>

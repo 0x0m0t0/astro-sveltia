@@ -9,10 +9,11 @@ import Layout from '../layouts/Layout.astro'
 import Movies from '../components/Movies.astro'
 ---
 
-<Layout title="now page">
-	<main class="mr-24 flex flex-col gap-4 pt-4">
+<Layout title="Now" class="h-full min-h-screen pt-2">
+	<main class="flex h-full flex-col gap-4 px-4">
 		<section>
-			<ul aria-label="about links"></ul>
+			<h2 class="pt-2 text-stone-400">now</h2>
+			<ul aria-label="now activities"></ul>
 			{
 				now[0].data.activities.map((a) => {
 					return <li>{a.activity}</li>
