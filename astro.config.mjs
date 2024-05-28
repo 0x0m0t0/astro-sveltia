@@ -4,8 +4,9 @@ import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
 	output: 'server',
-	adapter: cloudflare({
-		imageService: 'cloudflare'
-	}),
+	adapter: cloudflare(),
+	// ({
+	// 	imageService: 'cloudflare'
+	// }),
 	integrations: [tailwind()]
 })
