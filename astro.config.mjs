@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config'
-import vercel from '@astrojs/vercel/serverless'
+import cloudflare from '@astrojs/cloudflare'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
 	output: 'hybrid',
-	adapter: vercel(),
+	adapter: cloudflare({
+		imageService: 'cloudflare'
+	}),
 	integrations: [tailwind()]
 })
