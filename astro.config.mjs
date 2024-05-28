@@ -3,7 +3,7 @@ import cloudflare from '@astrojs/cloudflare'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
-	output: 'hybrid',
+	output: 'server',
 	adapter: cloudflare({
 		imageService: 'cloudflare'
 	}),

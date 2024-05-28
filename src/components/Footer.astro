@@ -6,7 +6,7 @@
 // }
 
 import Darkmode from './Darkmode.astro'
-const counterscale: string = import.meta.env.COUNTERSCALE_URI
+// const counterscale: string = import.meta.env.COUNTERSCALE_URI
 // const unislug: string = import.meta.env.UNIQUE_SLUG
 
 function getOrdinalSuffix(day: number) {
@@ -45,11 +45,11 @@ const date = new Date().toDateString()
 	No cookies. Last updated <span>{date}</span>
 </p> -->
 <Darkmode />
-<script is:inline>
+<!-- <script is:inline>
 	;(function () {
 		window.counterscale = {
 			q: [['set', 'siteId', 'rqqja62zGxwE7RmRLVIOvOEetM'], ['trackPageview']]
 		}
 	})()
 </script>
-<script id="counterscale-script" src=`${counterscale}/tracker.js` defer></script>
+<script id="counterscale-script" src=`${counterscale}/tracker.js` defer></script> -->
