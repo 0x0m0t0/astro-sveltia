@@ -6,8 +6,6 @@
 // }
 
 import Darkmode from './Darkmode.astro'
-// const counterscale: string = import.meta.env.COUNTERSCALE_URI
-// const unislug: string = import.meta.env.UNIQUE_SLUG
 
 function getOrdinalSuffix(day: number) {
 	if (day > 3 && day < 21) return 'th'
@@ -45,11 +43,10 @@ const date = new Date().toDateString()
 	No cookies. Last updated <span>{date}</span>
 </p> -->
 <Darkmode />
-<!-- <script is:inline>
-	;(function () {
-		window.counterscale = {
-			q: [['set', 'siteId', 'rqqja62zGxwE7RmRLVIOvOEetM'], ['trackPageview']]
-		}
-	})()
-</script>
-<script id="counterscale-script" src=`${counterscale}/tracker.js` defer></script> -->
+
+<!-- Cloudflare Web Analytics -->
+<script
+	defer
+	src="https://static.cloudflareinsights.com/beacon.min.js"
+	data-cf-beacon='{"token": "84f1801b31d548a68e9f3640592b9128"}'
+></script><!-- End Cloudflare Web Analytics -->
