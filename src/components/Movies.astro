@@ -82,15 +82,17 @@ const monthNames = [
 										<Image
 											src={m?.poster}
 											alt={m.title + `poster`}
-											inferSize={true}
+											width={200}
+											height={300}
 											class="aspect-2/3 rounded-sm object-cover"
 										/>
 									) : (
 										<Image
 											src="/assets/placeholder/pattern_checkerboard.png"
 											alt="Checkerboard Pattern"
-											inferSize={true}
-											class:list={['aspect-2/3', 'rounded-sm']}
+											width={200}
+											height={300}
+											class="aspect-2/3 rounded-sm"
 										/>
 									)}
 								</a>
