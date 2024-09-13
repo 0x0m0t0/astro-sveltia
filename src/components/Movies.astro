@@ -1,7 +1,7 @@
 ---
 export const prerender = false
 import { Image } from 'astro:assets'
-import checkerboardPattern from './public/assets/placeholder/pattern_checkerboard.png'
+
 const { env } = Astro.locals.runtime
 const api = env.APIURI
 const token = env.APITOKEN
@@ -87,7 +87,7 @@ const monthNames = [
 										/>
 									) : (
 										<Image
-											src={checkerboardPattern}
+											src="/assets/placeholder/pattern_checkerboard.png"
 											alt="Checkerboard Pattern"
 											inferSize={true}
 											class:list={['aspect-2/3', 'rounded-sm']}
