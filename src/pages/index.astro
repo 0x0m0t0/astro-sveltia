@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-// import { opengraphImage } from './socials/oxomoto_opengraph.png'
-const opengraphImage = '/images/socials/oxomoto_opengraph.png'
+const { env } = Astro.locals.runtime
+const domain = env.DOMAIN
 import { SEO } from 'astro-seo'
 import Carousel from '@/components/Carousel.astro'
 ---
@@ -14,7 +14,7 @@ import Carousel from '@/components/Carousel.astro'
 			basic: {
 				title: 'oxomoto web developer and graphic designer',
 				type: 'website',
-				image: opengraphImage
+				image: `${domain}images/socials/oxomoto_opengraph.png`
 			}
 		}}
 		twitter={{
