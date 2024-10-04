@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-const domain = import.meta.env.DOMAIN
+const { env } = Astro.locals.runtime
+const domain = env.DOMAIN
 import { SEO } from 'astro-seo'
 import Carousel from '@/components/Carousel.astro'
 ---
