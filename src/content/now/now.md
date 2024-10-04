@@ -1,8 +1,8 @@
 ---
 activities:
-  - activity: Reading The Silk Roads by Peter Frankopan
-  - activity: Practicing my Typescript & Svelte
-  - activity: Drinking too much coffee
-  - activity: Integrating Sveltia CMS with Astro on this website. https://github.com/sveltia/sveltia-cms/
-  - activity: Trying to index my library and make it reachable by API
+  - activity: Trying to get my images into focus while using my analog camera.
+  - activity: Enjoying the last rays of sunshing while cruising on my bike through Brussels.
+  - activity: Still drinking too much coffee & going to sleep late.
+  - activity: Playing around with maps and data.
+  - activity: Getting over my fear of contributing to open source projects.
 ---
