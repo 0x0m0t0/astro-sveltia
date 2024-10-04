@@ -19,8 +19,8 @@ const { title, class: className, ...rest } = Astro.props
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-
+		<!-- <me@ta name="generator" content={Astro.generator} /> -->
+		<slot name="head" />
 		<title>{title}</title>
 		<script is:inline>
 			const theme = localStorage.getItem('theme'),
@@ -31,9 +31,10 @@ const { title, class: className, ...rest } = Astro.props
 					? document.documentElement.classList.remove('dark')
 					: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
 		</script>
-		<script is:inline data-domain="oxomoto.co" src="https://plausible.farnientesystems.com/js/script.js"></script>
-		<script is:inline src="https://umami.farnientesystems.com/script.js" data-website-id="078ae678-0b57-4d6f-bc4d-77f893f483f7"></script>
-
+		<script
+			is:inline
+			data-domain="oxomoto.co"
+			src="https://plausible.farnientesystems.com/js/script.js"></script>
 	</head>
 
 	<body
