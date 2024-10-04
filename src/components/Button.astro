@@ -1,0 +1,37 @@
+---
+const { class: className, style, hover = false } = Astro.props
+
+// todo check if button or inactive
+---
+
+<button
+	class:list={[
+		'pb-8 pl-0 pr-0 pt-1',
+		className,
+		hover === true ? 'hover:bg-dark hover:text-white hover:dark:bg-white hover:dark:text-dark' : ''
+	]}
+	style={style}
+	><slot />
+</button>
+
+<style>
+	button {
+		display: block;
+		/* padding: 0.25rem 0 2rem 0.25rem; */
+		text-align: left;
+		border-top: 2px solid rgb(229, 229, 229);
+		border-right: 2px solid rgb(46, 46, 46);
+		border-bottom: 2px solid rgb(46, 46, 46);
+		border-left: 2px solid rgb(229, 229, 229);
+	}
+
+	/* .btn:hover {
+		border-top: 2px solid rgb(177, 177, 177);
+		border-right: 2px solid rgb(33, 33, 33);
+		border-bottom: 2px solid rgb(33, 33, 33);
+		border-left: 2px solid rgb(177, 177, 177);
+	}
+	.btn:active {
+		border-color: rgb(207, 207, 207);
+	} */
+</style>

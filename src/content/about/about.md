@@ -20,4 +20,4 @@ url: oxomoto.co
 ---
 
 Design and development practice of Louis Desmet. Brussels based.
-Open for freelance work & collaboration starting Q2 2024.
+Open for freelance work & collaboration starting Q3 2024.

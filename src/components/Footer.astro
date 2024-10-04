@@ -1,10 +1,4 @@
 ---
-// type Props ={
-// 	title: string;
-// 	body: string;
-// 	href: string;
-// }
-
 import Darkmode from './Darkmode.astro'
 
 function getOrdinalSuffix(day: number) {
@@ -39,12 +33,9 @@ const monthNames = [
 const date = new Date().toDateString()
 ---
 
-<!-- <p>
-	No cookies. Last updated <span>{date}</span>
-</p> -->
-<Darkmode />
-
-<script
-	defer
-	src="https://static.cloudflareinsights.com/beacon.min.js?token=84f1801b31d548a68e9f3640592b9128"
-></script>
+<footer class="text-sm">
+	<Darkmode />
+	<p>
+		no cookies. last updated <span>{date}</span>
+	</p>
+</footer>

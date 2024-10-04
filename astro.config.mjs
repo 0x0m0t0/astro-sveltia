@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import cloudflare from '@astrojs/cloudflare'
 import tailwind from '@astrojs/tailwind'
+import partytown from '@astrojs/partytown'
 
 export default defineConfig({
 	output: 'server',
@@ -8,5 +9,5 @@ export default defineConfig({
 	// ({
 	// 	imageService: 'cloudflare'
 	// }),
-	integrations: [tailwind()]
+	integrations: [tailwind(), partytown()]
 })
