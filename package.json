@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "11.1.0",
+		"@astrojs/partytown": "^2.1.2",
 		"@astrojs/tailwind": "5.1.1",
 		"astro": "4.15.11",
 		"astro-seo": "^0.8.4",
