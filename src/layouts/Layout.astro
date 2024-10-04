@@ -16,11 +16,9 @@ const { title, class: className, ...rest } = Astro.props
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<slot name="head" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- <me@ta name="generator" content={Astro.generator} /> -->
-		<slot name="head" />
 		<title>{title}</title>
 		<script is:inline>
 			const theme = localStorage.getItem('theme'),
