@@ -1,32 +1,34 @@
+---
+import Button from '@/components/Button.astro'
+---
+
 <section aria-label="Newsletter">
+	<p>Occassional snail-mail on projects, thoughts, and other tidbits.</p>
 	<form
 		action="https://buttondown.email/api/emails/embed-subscribe/oxomoto"
 		method="post"
 		target="popupwindow"
 		onsubmit="window.open(`https://buttondown.email/oxomoto`, `popupwindow`)"
-		class="embeddable-buttondown-form"
+		class="embeddable-buttondown-form flex gap-2 pt-2"
 	>
-		<input
-			type="email"
-			name="email"
-			id="bd-email"
-			class="rounded bg-slate-200 pl-2 text-dark dark:text-dark"
-		/>
-		<input
-			type="submit"
-			value="Subscribe"
-			class="cursor-pointer rounded bg-stone-400 px-2 text-mauve hover:bg-darkSand hover:text-mauve"
-		/>
-		<label class="block pb-4 text-stone-400" for="bd-email"
-			>Occassional snail-mail newsletter
-		</label>
+		<input type="email" name="email" id="bd-email" class="pl-2" />
+		<Button class="cursor-pointer" style={'padding:0.25rem'} hover={true}>
+			<input type="submit" value="Subscribe" class="cursor-pointer" />
+		</Button>
 	</form>
 </section>
 
 <style>
-	input:focus-visible {
-		outline-color: rgb(168 162 158);
+	form > input:focus-visible {
+		outline-color: rgb(229, 229, 229);
 		outline-style: dashed;
-		outline-width: 2px;
+		outline-width: 1px;
+		border: 0px;
+	}
+
+	form > input {
+		border: 2px solid rgb(229, 229, 229);
+		color: inherit;
+		background-color: transparent;
 	}
 </style>

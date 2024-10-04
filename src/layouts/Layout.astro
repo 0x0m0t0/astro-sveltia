@@ -6,9 +6,9 @@ import Header from '@/components/Header.astro'
 
 interface Props {
 	title: string
+	class?: string
 }
 
-// const { title } = Astro.props
 const { title, class: className, ...rest } = Astro.props
 ---
 

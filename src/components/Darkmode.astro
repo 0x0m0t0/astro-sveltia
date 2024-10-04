@@ -1,15 +1,14 @@
 ---
 // https://github.com/Princesseuh/erika.florist
 // https://docs.astro.build/en/tutorial/6-islands/2/
+//
+const { class: className, style } = Astro.props
 ---
 
-<div
-	id="dark-mode-toggle"
-	class="absolute bottom-0 right-0 z-50 select-none p-4 hover:cursor-pointer"
->
-	<p id="sun" class="text-xs">light</p>
-	<p id="moon" class="text-xs">dark</p>
-	<p id="system" class="text-xs">system</p>
+<div id="dark-mode-toggle" style={style} class=`hover:underline hover:cursor-pointer ${className}`>
+	<p id="sun">theme: light</p>
+	<p id="moon">theme: dark</p>
+	<p id="system">theme: system</p>
 </div>
 
 <script>

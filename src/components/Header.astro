@@ -11,16 +11,16 @@ const Links = [
 	{
 		path: '/now',
 		label: 'NOW'
-	},
+	}
 	// {
 	// 	path: '/contact',
 	// 	label: 'CONTACT'
 	// },
 	// { path: '/projects', label: 'Projects' },
 
-	{
-		label: 'Design and development practice.'
-	}
+	// {
+	// 	label: 'Design and development practice.'
+	// }
 ]
 ---
 
@@ -111,8 +111,7 @@ const Links = [
 		width: 20vw;
 		max-width: 20vw;
 	}
-	#navz .btn,
-	.desc {
+	#navz .btn {
 		opacity: 0;
 		animation: stagger ease-in 0.4s forwards 1;
 		animation-delay: calc(var(--order) * 0.1s);
@@ -121,6 +120,7 @@ const Links = [
 		animation: stagger-out ease-in 0.4s forwards 1;
 		animation-delay: calc(var(--order) * 0.1s);
 	}
+
 	@keyframes stagger {
 		from {
 			opacity: 0;

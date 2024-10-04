@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 import Newsletter from '@/components/Newsletter.astro'
+import Button from '@/components/Button.astro'
 
 const about = await getCollection('about')
 const data = about[0]
@@ -68,9 +69,12 @@ const data = about[0]
 					<li>E-commerce</li>
 				</ul>
 			</div>
-		</section>
 
-		<Newsletter />
+			<div class="list flex w-full items-start gap-2">
+				<Button class="w-1/5">Newsletter</Button>
+				<Newsletter />
+			</div>
+		</section>
 	</main>
 </Layout>
 <style>
