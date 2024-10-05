@@ -9,16 +9,17 @@ import Layout from '../layouts/Layout.astro'
 import Movies from '../components/Movies.astro'
 ---
 
-<Layout title="Now" class="h-full min-h-screen">
-	<main class="flex h-full flex-col gap-4 px-4">
+<Layout title="Now" class="h-full md:h-screen">
+	<main class="flex h-full flex-col gap-4 px-0 md:px-4">
 		<section>
-			<h2 class="pt-2 text-stone-400">now</h2>
-			<ul aria-label="now activities"></ul>
-			{
-				now[0].data.activities.map((a) => {
-					return <li>{a.activity}</li>
-				})
-			}
+			<h2 class="pt-2 text-stone-400 md:pt-0">now</h2>
+			<ul aria-label="now activities" class="now">
+				{
+					now[0].data.activities.map((a, i) => {
+						return <li style={`--order: ${i};`}>{a.activity}</li>
+					})
+				}
+			</ul>
 		</section>
 		<section class="flex items-center justify-between">
 			<!-- Astro component cannot use client:idle; needs to be refactored with svelte -->
@@ -26,3 +27,16 @@ import Movies from '../components/Movies.astro'
 		</section>
 	</main>
 </Layout>
+
+<style>
+	ul.now,
+	li {
+		list-style-type: circle;
+		list-style: circle;
+		list-style-position: inside;
+	}
+	li {
+		padding-bottom: 0.25rem;
+		padding-left: calc(var(--order) * 0.5rem);
+	}
+</style>
