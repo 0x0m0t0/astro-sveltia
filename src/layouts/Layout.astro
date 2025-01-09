@@ -1,15 +1,15 @@
 ---
-import '../assets/styles/reset.css'
-import '../assets/styles/global.css'
-import Footer from '@/components/Footer.astro'
-import Header from '@/components/Header.astro'
+import "../assets/styles/reset.css";
+import "../assets/styles/global.css";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
 
 interface Props {
-	title: string
-	class?: string
+	title: string;
+	class?: string;
 }
 
-const { title, class: className, ...rest } = Astro.props
+const { title, class: className, ...rest } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,10 +30,10 @@ const { title, class: className, ...rest } = Astro.props
 					: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
 		</script>
 
-		<script
+		<!-- <script
 			is:inline
 			src="https://umam.farnientesystems.com/script.js"
-			data-website-id="f1c264d3-ef23-4fb2-a8fb-5c1ec283e9b0"></script>
+			data-website-id="f1c264d3-ef23-4fb2-a8fb-5c1ec283e9b0"></script> -->
 	</head>
 
 	<body
