@@ -1,11 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
-import Newsletter from '@/components/Newsletter.astro'
-import Button from '@/components/Button.astro'
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const about = await getCollection('about')
-const data = about[0]
+const about = await getCollection("about");
+const data = about[0];
 ---
 
 <Layout title="About oxomoto" class="h-full md:h-screen">
@@ -70,10 +68,7 @@ const data = about[0]
 				</ul>
 			</div>
 
-			<div class="list flex w-full items-start gap-2">
-				<Button class="w-full md:w-1/5" style={'padding-left:0.25rem'}>Newsletter</Button>
-				<Newsletter />
-			</div>
+
 		</section>
 	</main>
 </Layout>
