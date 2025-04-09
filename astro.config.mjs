@@ -1,13 +1,22 @@
 import { defineConfig } from 'astro/config'
 import cloudflare from '@astrojs/cloudflare'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import partytown from '@astrojs/partytown'
 
 export default defineConfig({
 	output: 'server',
 	adapter: cloudflare(),
+
 	// ({
 	// 	imageService: 'cloudflare'
 	// }),
-	integrations: [tailwind(), partytown()]
+	integrations: [tailwindcss(), partytown()],
+
+	vite: {
+		plugins: [tailwindcss()]
+	},
+
+	experimental: {
+		svg: true
+	}
 })

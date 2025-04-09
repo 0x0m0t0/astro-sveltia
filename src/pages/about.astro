@@ -1,16 +1,16 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import Layout from '../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
 
-const about = await getCollection("about");
-const data = about[0];
+const about = await getCollection('about')
+const data = about[0]
 ---
 
 <Layout title="About oxomoto" class="h-full md:h-screen">
-	<main class="flex h-full flex-col justify-between pt-2 md:px-2 md:pt-0">
-		<section class="flex flex-col gap-2">
-			<div class="list flex w-full items-start gap-2">
-				<h2 class="btn w-1/5 pt-2">About</h2>
+	<main class="flex h-full flex-grow flex-col items-center justify-between p-4">
+		<section class="flex max-w-2xl flex-col gap-2">
+			<div class="flex w-80 flex-col items-center gap-4">
+				<h2 class="bg-dark/10 w-full rounded-md p-2 text-center">About</h2>
 				<div class="w-full">
 					<p>
 						{data.body}
@@ -27,7 +27,7 @@ const data = about[0];
 						<!-- simple obfuscation to avoid spam bots -->
 						<a
 							href="mailto:i%6efo@oxomoto%2eco"
-							class="text-blue-600 hover:text-darkSand hover:underline"
+							class="hover:text-darkSand text-blue-600 hover:underline"
 						>
 							info
 							<span class="at"></span>
@@ -36,13 +36,13 @@ const data = about[0];
 					</p>
 				</div>
 			</div>
-			<div class="list flex w-full items-start gap-2">
-				<h3 class="btn w-1/5">Links</h3>
-				<ul class="w-full" aria-label="about links">
+			<div class="mt-10 flex flex-col items-center gap-4">
+				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center">Links</h3>
+				<ul class="flex w-full flex-col items-center gap-2" aria-label="about links">
 					{
 						data.data.links.map((link) => {
 							return (
-								<li>
+								<li class="w-80 rounded-md border p-2 text-center">
 									<a href={link.url} class="hover:text-darkSand hover:underline">
 										{link.label}
 									</a>
@@ -53,25 +53,24 @@ const data = about[0];
 				</ul>
 			</div>
 
-			<div class="list flex w-full items-start gap-2">
-				<h3 class="btn w-1/5">Services</h3>
-				<ul class="w-full" aria-label="about links">
-					<li>Art Direction</li>
-					<li>Web development</li>
-					<li>Graphic Design</li>
-					<li>Branding</li>
-					<li>UX/UI</li>
-					<li>Typography</li>
-					<li>Consulting</li>
-					<li>SEO</li>
-					<li>E-commerce</li>
+			<div class="mt-10 flex flex-col items-center gap-4">
+				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center">Services</h3>
+				<ul class="flex w-full flex-col items-center gap-2" aria-label="about links">
+					<li class="w-80 rounded-md border p-2 text-center">Art Direction</li>
+					<li class="w-80 rounded-md border p-2 text-center">Web development</li>
+					<li class="w-80 rounded-md border p-2 text-center">Graphic Design</li>
+					<li class="w-80 rounded-md border p-2 text-center">Branding</li>
+					<li class="w-80 rounded-md border p-2 text-center">X/UI</li>
+					<li class="w-80 rounded-md border p-2 text-center">Typography</li>
+					<li class="w-80 rounded-md border p-2 text-center">Consulting</li>
+					<li class="w-80 rounded-md border p-2 text-center">SEO</li>
+					<li class="w-80 rounded-md border p-2 text-center">E-commerce</li>
 				</ul>
 			</div>
-
-
 		</section>
 	</main>
 </Layout>
+
 <style>
 	:root {
 		--mydom: 'oxomoto.co';
@@ -81,32 +80,5 @@ const data = about[0];
 	}
 	.dom:after {
 		content: var(--mydom);
-	}
-
-	.btn {
-		display: block;
-		padding: 0.25rem 0 2rem 0.25rem;
-		width: 20vw;
-		text-align: left;
-		border-top: 2px solid rgb(229, 229, 229);
-		border-right: 2px solid rgb(110, 110, 110);
-		border-bottom: 2px solid rgb(110, 110, 110);
-		border-left: 2px solid rgb(229, 229, 229);
-	}
-
-	@media (max-width: 768px) {
-		.btn {
-			width: 100%;
-		}
-		.list {
-			flex-direction: column;
-		}
-		.list div,
-		.list li {
-			padding: 0 1.25rem 0.25rem 0.25rem;
-		}
-		section > div {
-			margin-bottom: 2rem;
-		}
 	}
 </style>

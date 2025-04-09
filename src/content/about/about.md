@@ -19,5 +19,6 @@ links:
 url: oxomoto.co
 ---
 
-Design and development practice of Louis Desmet. Brussels based.
-Open for projects & collaboration starting February 2025.
+Design and development practice of Louis Desmet. Brussels based. 
+
+Open for projects & collaboration starting end of April 2025.

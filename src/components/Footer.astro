@@ -33,9 +33,9 @@ const monthNames = [
 const date = new Date().toDateString()
 ---
 
-<footer class="text-sm">
+<footer class="text-s mt-auto flex flex-col items-center gap-4" transition:persist>
 	<Darkmode />
-	<p>
+	<p class="pb-4 text-center text-xs">
 		no cookies. last updated <span>{date}</span>
 	</p>
 </footer>
