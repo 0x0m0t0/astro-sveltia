@@ -22,8 +22,7 @@ import Movies from '../components/Movies.astro'
 			</ul>
 		</section>
 		<section class="flex w-80 items-center justify-between">
-			<!-- Astro component cannot use client:idle; needs to be refactored with svelte -->
-			<Movies />
+			<Movies client:idle />
 		</section>
 	</main>
 </Layout>
