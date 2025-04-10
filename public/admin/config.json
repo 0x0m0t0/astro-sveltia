@@ -2,38 +2,32 @@
 	"backend": {
 		"name": "github",
 		"repo": "0x0m0t0/astro-sveltia",
-		"branch": "main",
+		"branch": "dev",
 
 		"site_domain": "astro-sveltia.vercel.app",
 		"base_url": "https://sveltia-cms-auth.cheguez.workers.dev"
 	},
-	"media_folder": "public/images/uploads",
+	"media_folder": "public/assets/media",
 	"public_folder": "/",
 	"collections": [
 		{
-			"name": "blog",
-			"label": "Posts",
-			"label_singular": "Post",
-			"folder": "src/content/posts",
+			"name": "work",
+			"label": "Projects",
+			"label_singular": "Project",
+			"folder": "src/content/projects",
 			"create": true,
+			"extension": "json",
+			"format": "json",
 			"slug": "{{slug}}",
 			"fields": [
 				{ "label": "Title", "name": "title", "widget": "string" },
 				{ "label": "Publish Date", "name": "date", "widget": "datetime" },
-				{
-					"label": "Author",
-					"name": "author",
-					"widget": "relation",
-					"collection": "authors",
-					"search_fields": "name",
-					"value_field": "name"
-				},
-				{ "label": "Summary", "name": "summary", "widget": "text" },
+				{ "label": "Description", "name": "description", "widget": "text" },
 				{
 					"label": "Tags",
 					"name": "tags",
 					"widget": "list",
-					"default": ["post"],
+					"default": ["all"],
 					"hint": "Enter tags separated by a comma"
 				},
 				{
@@ -85,35 +79,6 @@
 				},
 				{
 					"label": "Body",
-					"name": "body",
-					"widget": "markdown",
-					"hint": "Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-				}
-			]
-		},
-		{
-			"name": "authors",
-			"label": "Authors",
-			"label_singular": "Author",
-			"icon": "person",
-			"folder": "src/content/authors",
-			"create": true,
-			"slug": "{{slug}}",
-			"fields": [
-				{ "label": "Name", "name": "name", "widget": "string" },
-				{
-					"label": "Image",
-					"name": "image",
-					"widget": "image",
-					"hint": "Upload an image for this author (max. 1MB). You can also use an image URL.",
-					"media_library": {
-						"config": {
-							"max_file_size": 1024000
-						}
-					}
-				},
-				{
-					"label": "Description",
 					"name": "body",
 					"widget": "markdown",
 					"hint": "Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
