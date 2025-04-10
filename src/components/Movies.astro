@@ -1,12 +1,10 @@
 ---
-export const prerender = false
 import { Image } from 'astro:assets'
 
 const { env } = Astro.locals.runtime
 const api = env.APIURI
 const token = env.APITOKEN
-// const api = import.meta.env.APIURI
-// const token = import.meta.env.APITOKEN
+
 const response = await fetch(api, {
 	method: 'GET',
 	headers: {
