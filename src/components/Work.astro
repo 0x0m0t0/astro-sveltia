@@ -1,26 +1,29 @@
 ---
 import { Image } from 'astro:assets'
-import testdata from '/public/assets/test/testdata.json'
-interface Data {
-	url: string[]
-	title: string
-	description: string
-	type: string[]
-}
+import Select from '@/components/Select.astro'
+import { getCollection } from 'astro:content'
+
+const projects = await getCollection('projects')
+
+console.log('projects', projects)
+// console.log('data', data)
+
+console.log('projectstest', projects[0].data)
 ---
 
 <section class="work-section mt-20 flex w-full flex-col items-center">
+	<Select />
 	<ul class="flex max-w-6xl flex-col gap-20">
 		{
-			testdata.map((data: Data) => {
+			projects.map((p) => {
 				return (
 					<li class="projects flex w-full cursor-pointer flex-col items-center justify-end pb-8 transition-all duration-500 ease-out">
 						<div class="project-images mb-8 flex w-full max-w-full basis-auto flex-col items-end justify-center gap-4 px-4 transition-all duration-700 ease-out md:flex-row">
-							{data.url.map((url, index) => (
-								<div class={`flex ${data.url.length === 1 ? 'mx-auto w-full' : 'flex-1'}`}>
+							{p.data.images.map((media, index) => (
+								<div class={`flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'}`}>
 									<Image
-										src={url}
-										alt={`${data.title} - image ${index + 1}`}
+										src={media.image}
+										alt={`${media.alt} - image ${index + 1}`}
 										width={1200}
 										height={600}
 										class="h-auto w-full rounded-md object-contain transition-all duration-700"
@@ -31,8 +34,8 @@ interface Data {
 							))}
 						</div>
 						<figcaption class="bg-mauve dark:bg-dark sticky bottom-10 z-10 max-w-6xl rounded border p-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]">
-							<h3 class="text-center">{data.title}</h3>
-							<p class="leading-4">{data.description}</p>
+							<h3 class="text-center">{p.data.title}</h3>
+							<p class="leading-4">{p.data.description}</p>
 						</figcaption>
 					</li>
 				)

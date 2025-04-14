@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 
 const linkSchema = z.object({
 	label: z.string(),
@@ -9,20 +10,24 @@ const activitiesSchema = z.object({
 	activity: z.string()
 })
 
-const postsCollection = defineCollection({
-	type: 'content',
-	schema: z.object({
-		title: z.string(),
-		date: z.string(),
-		author: z.string(),
-		summary: z.string(),
-		tags: z.array(z.string()),
-		image: z.string(),
-		imageAltText: z.string()
-		// description: z.string(),
-		// isPublish: z.boolean(),
-		// isDraft: z.boolean().default(false)
-	})
+const projectSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+	date: z.string().optional(),
+	tags: z.array(z.string()).optional(),
+	images: z.array(
+		z.object({
+			image: z.string(),
+			caption: z.string().optional(),
+			alt: z.string()
+		})
+	),
+	body: z.string().optional()
+})
+
+const projectsCollection = defineCollection({
+	loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
+	schema: projectSchema
 })
 
 const authorsCollection = defineCollection({
@@ -50,8 +55,8 @@ const aboutCollection = defineCollection({
 })
 
 export const collections = {
-	posts: postsCollection,
 	about: aboutCollection,
 	now: nowCollection,
-	authors: authorsCollection
+	authors: authorsCollection,
+	projects: projectsCollection
 }

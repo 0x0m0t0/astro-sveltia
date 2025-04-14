@@ -1,0 +1,19 @@
+{
+	"title": "TEST",
+	"date": "2025-04-10T16:46:00",
+	"description": "qfdsfqsf",
+	"tags": ["all"],
+	"images": [
+		{
+			"image": "/assets/media/MDC_019_gistel_005_LR-1250x1536.jpg",
+			"caption": "fqdfqsf",
+			"alt": "qfsdf"
+		},
+		{
+			"image": "/assets/media/wouter_paijmans.jpg",
+			"caption": "qdfs",
+			"alt": "qdfsdf"
+		}
+	],
+	"body": ""
+}

@@ -1,13 +1,10 @@
 {
-  "title": "Test basilica",
-  "date": "2025-04-10T15:55:00",
-  "description": "Description of mmy project",
-  "tags": [
-    "all",
-    "selected",
-    "website"
-  ],
-  "image": "/test.png",
-  "imageAltText": "website basilica",
-  "body": "Okay fuck this body part"
+	"title": "Test basilica",
+	"date": "2025-04-10T15:55:00",
+	"description": "Description of mmy project",
+	"tags": ["all", "selected", "website"],
+
+	"images": [{ "image": "/assets/media/test.png", "caption": "test", "alt": "test" }],
+
+	"body": "Okay fuck this body part"
 }

@@ -31,13 +31,31 @@
 					"hint": "Enter tags separated by a comma"
 				},
 				{
-					"label": "Image",
-					"name": "image",
-					"widget": "image",
-					"hint": "Upload an image for this post. You can also use an image URL."
+					"label": "Image Gallery",
+					"name": "images",
+					"widget": "list",
+					"summary": "{{fields.caption}}",
+					"fields": [
+						{
+							"label": "Image",
+							"name": "image",
+							"widget": "image",
+							"hint": "Upload an image for the gallery."
+						},
+						{
+							"label": "Caption",
+							"name": "caption",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"label": "Alt Text",
+							"name": "alt",
+							"widget": "string"
+						}
+					]
 				},
-				{ "label": "Image Alt Text", "name": "imageAltText", "widget": "string" },
-				{ "label": "Body", "name": "body", "widget": "markdown" }
+				{ "label": "Body", "name": "body", "required": false, "widget": "markdown" }
 			]
 		},
 		{
