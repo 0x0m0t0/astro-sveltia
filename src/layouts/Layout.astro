@@ -29,13 +29,37 @@ const { title, class: className, ...rest } = Astro.props
 					? document.documentElement.classList.remove('dark')
 					: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
 		</script>
+		<script>
+			document.addEventListener(
+				'astro:page-load',
+				() => {
+					// Find all buttons with data-track attribute
+					const trackableButtons = document.querySelectorAll('[data-track]')
+
+					trackableButtons.forEach((button) => {
+						button.addEventListener('click', () => {
+							if (typeof umami !== 'undefined') {
+								const eventName = button.getAttribute('data-track') || 'Button Click'
+								const buttonId = button.id || ''
+								const buttonText = button.textContent?.trim() || ''
+
+								umami.track(eventName, {
+									buttonId,
+									buttonText,
+									pageLocation: window.location.pathname
+								})
+							}
+						})
+					})
+				},
+				{ once: false }
+			)
+		</script>
 
 		<script
 			is:inline
 			src="https://uma.farnientesystems.com/script.js"
 			data-website-id="11c5e721-1657-426c-9d1c-ff6db197db01"></script>
-
-		<!-- <ClientRouter /> -->
 
 		<ClientRouter fallback="swap" />
 	</head>
