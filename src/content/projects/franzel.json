@@ -1,0 +1,17 @@
+{
+	"publish": true,
+	"order": 2,
+	"title": "Franzel - 2024",
+	"date": "2025-04-30T17:45:00",
+	"description": "Design & Development of Franzel's portfolio and e-commerce site",
+	"tags": ["all", "selected", "website"],
+	"images": [
+		{
+			"image": "/franzel-site.jpg",
+			"caption": "Frontpage Franzel",
+			"alt": "Frontpage website Franzel: Belgian design"
+		}
+	],
+	"link": "https://franzel.be/",
+	"body": ""
+}

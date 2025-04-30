@@ -5,18 +5,19 @@ import partytown from '@astrojs/partytown'
 
 export default defineConfig({
 	output: 'server',
-	adapter: cloudflare(),
+	adapter: cloudflare({
+		imageService: 'cloudflare',
+		platformProxy: {
+			enabled: true,
+			configPath: './wrangler.toml'
+		}
+	}),
 
 	// ({
-	// 	imageService: 'cloudflare'
 	// }),
 	integrations: [tailwindcss(), partytown()],
 
 	vite: {
 		plugins: [tailwindcss()]
-	},
-
-	experimental: {
-		svg: true
 	}
 })

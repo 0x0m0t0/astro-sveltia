@@ -10,8 +10,8 @@ const data = about[0]
 	<main class="flex h-full flex-grow flex-col items-center justify-between p-4">
 		<section class="flex max-w-2xl flex-col gap-2">
 			<div class="flex w-80 flex-col items-center gap-4">
-				<h2 class="bg-dark/10 w-full rounded-md p-2 text-center">About</h2>
-				<div class="w-full">
+				<h2 class="bg-dark/10 w-80 rounded-md p-2 text-center dark:bg-white/10">About</h2>
+				<div class="flex w-full flex-col gap-4">
 					<p>
 						{data.body}
 						<span class="relative inline-flex h-3 w-3">
@@ -25,10 +25,7 @@ const data = about[0]
 					<p>
 						For inquiries get in touch at ↗
 						<!-- simple obfuscation to avoid spam bots -->
-						<a
-							href="mailto:i%6efo@oxomoto%2eco"
-							class="hover:text-darkSand text-blue-600 hover:underline"
-						>
+						<a href="mailto:i%6efo@oxomoto%2eco" class="mail">
 							info
 							<span class="at"></span>
 							<span class="dom"></span>
@@ -37,8 +34,8 @@ const data = about[0]
 				</div>
 			</div>
 			<div class="mt-10 flex flex-col items-center gap-4">
-				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center">Links</h3>
-				<ul class="flex w-full flex-col items-center gap-2" aria-label="about links">
+				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center dark:bg-white/10">Links</h3>
+				<ul class="links flex w-full flex-col items-center gap-2" aria-label="about links">
 					{
 						data.data.links.map((link) => {
 							return (
@@ -54,17 +51,15 @@ const data = about[0]
 			</div>
 
 			<div class="mt-10 flex flex-col items-center gap-4">
-				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center">Services</h3>
-				<ul class="flex w-full flex-col items-center gap-2" aria-label="about links">
-					<li class="w-80 rounded-md border p-2 text-center">Art Direction</li>
-					<li class="w-80 rounded-md border p-2 text-center">Web development</li>
-					<li class="w-80 rounded-md border p-2 text-center">Graphic Design</li>
-					<li class="w-80 rounded-md border p-2 text-center">Branding</li>
-					<li class="w-80 rounded-md border p-2 text-center">X/UI</li>
-					<li class="w-80 rounded-md border p-2 text-center">Typography</li>
-					<li class="w-80 rounded-md border p-2 text-center">Consulting</li>
-					<li class="w-80 rounded-md border p-2 text-center">SEO</li>
-					<li class="w-80 rounded-md border p-2 text-center">E-commerce</li>
+				<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center dark:bg-white/10">Services</h3>
+				<ul class="services flex w-full flex-col items-center gap-2" aria-label="about links">
+					{
+						data.data.services && data.data.services.length > 0
+							? data.data.services.map((service) => {
+									return <li class="w-80 p-2 text-center">{service}</li>
+								})
+							: null
+					}
 				</ul>
 			</div>
 		</section>
@@ -80,5 +75,26 @@ const data = about[0]
 	}
 	.dom:after {
 		content: var(--mydom);
+	}
+	.mail {
+		text-decoration: underline;
+	}
+
+	.mail:hover {
+		text-decoration: none;
+	}
+	.services li:before,
+	.links li:hover:before {
+		content: '(';
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em;
+	}
+	.services li:after,
+	.links li:hover:after {
+		content: ')';
+		display: inline-block;
+		width: 1em;
+		margin-right: -1em;
 	}
 </style>

@@ -20,11 +20,11 @@ const Links = [
 	<nav
 		class="bg-mauve dark:bg-dark relative flex w-80 flex-wrap justify-between rounded-md border p-2 px-4"
 	>
-		<div class="flex w-full items-center justify-between">
-			<a href="/" class="cursor-pointer">oxomoto</a>
-			<a href="/about" class="cursor-pointer"> info</a>
-			<button id="togglez" class="cursor-pointer text-white dark:text-red-500">
-				<Hamburger class="hamburger h-6 w-6 cursor-pointer" />
+		<div class="flex w-full items-center">
+			<a href="/" class="w-1/3 cursor-pointer text-center">oxomoto</a>
+			<a href="/about" class="w-1/3 cursor-pointer text-center">info</a>
+			<button id="togglez" class="w-1/3 cursor-pointer">
+				<Hamburger class="hamburger m-auto h-6 w-6 cursor-pointer" />
 			</button>
 		</div>
 
@@ -38,7 +38,11 @@ const Links = [
 					Links.length > 0
 						? Links.map((l, i) => {
 								return (
-									<a href={l.path} class="btn" style={`--order: ${i};`}>
+									<a
+										href={l.path}
+										class="btn w-full rounded-md text-center"
+										style={`--order: ${i};`}
+									>
 										{l.label}
 									</a>
 								)
@@ -164,6 +168,19 @@ const Links = [
 	#navz.animate-out .btn {
 		animation: stagger-out ease-in 0.4s forwards 1;
 		animation-delay: calc(var(--order) * 0.1s);
+	}
+
+	#navz div a:hover:before {
+		content: '(';
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em;
+	}
+	#navz div a:hover:after {
+		content: ')';
+		display: inline-block;
+		width: 1em;
+		margin-right: -1em;
 	}
 
 	@keyframes stagger {

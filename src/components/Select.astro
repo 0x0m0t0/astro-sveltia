@@ -1,18 +1,37 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 
+interface Props {
+	data: CollectionEntry<'projects'>[]
+}
+const { data } = Astro.props
+
+let select = new Set(['selected'])
+
+data.forEach((item) => {
+	if (Array.isArray(item.data.tags)) {
+		if (item.data.publish === false) {
+			return
+		}
+		item.data.tags.forEach((tag) => {
+			select.add(tag)
+		})
+	}
+})
+const options = Array.from(select)
 ---
 
 <select
-	class="bg-mauve dark:bg-dark sticky bottom-10 z-10 max-w-80 rounded border p-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]"
+	id="tag-filter"
+	class="bg-mauve dark:bg-dark sticky z-10 my-10 max-w-80 rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]"
 >
-	<option>Selected work</option>
-	<option>All</option>
-	<option>Web</option>
-	<option>Art</option>
-</select>
-
-<style>
-	select {
-		color: red;
+	<option value={options[0]}>selected work</option>
+	{
+		options.map((item) => {
+			if (item === options[0]) {
+				return
+			}
+			return <option value={item}>{item}</option>
+		})
 	}
-</style>
+</select>

@@ -5,24 +5,33 @@ import { getCollection } from 'astro:content'
 
 const projects = await getCollection('projects')
 
-console.log('projects', projects)
-// console.log('data', data)
-
-console.log('projectstest', projects[0].data)
+const sortedProjects = [...projects].sort((a, b) => {
+	const orderA = a.data.order ?? Infinity
+	const orderB = b.data.order ?? Infinity
+	return orderA - orderB
+})
 ---
 
 <section class="work-section mt-20 flex w-full flex-col items-center">
-	<Select />
+	<Select data={sortedProjects} />
 	<ul class="flex max-w-6xl flex-col gap-20">
 		{
-			projects.map((p) => {
+			sortedProjects.map((p) => {
+				if (p.data.publish === false) {
+					return null
+				}
 				return (
-					<li class="projects flex w-full cursor-pointer flex-col items-center justify-end pb-8 transition-all duration-500 ease-out">
-						<div class="project-images mb-8 flex w-full max-w-full basis-auto flex-col items-end justify-center gap-4 px-4 transition-all duration-700 ease-out md:flex-row">
+					<li
+						data-tags={p.data.tags ? p.data.tags.join(',') : ''}
+						class="work-item projects flex w-full flex-col items-center justify-end pb-8 transition-all duration-500 ease-out"
+					>
+						<div class="parent-element project-images mb-4 flex w-full max-w-full basis-auto flex-col items-end justify-center gap-4 px-4 transition-all duration-700 ease-out md:flex-row">
 							{p.data.images.map((media, index) => (
-								<div class={`flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'}`}>
+								<div
+									class={`relative flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'} group`}
+								>
 									<Image
-										src={media.image}
+										src={'/assets/media' + media.image}
 										alt={`${media.alt} - image ${index + 1}`}
 										width={1200}
 										height={600}
@@ -30,13 +39,36 @@ console.log('projectstest', projects[0].data)
 										loading="lazy"
 										decoding="async"
 									/>
+									{p.data.link && (
+										<a
+											class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
+											href={p.data.link}
+											target="_blank"
+											rel="noopener"
+										>
+											view project ↗
+										</a>
+									)}
 								</div>
 							))}
 						</div>
-						<figcaption class="bg-mauve dark:bg-dark sticky bottom-10 z-10 max-w-6xl rounded border p-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]">
-							<h3 class="text-center">{p.data.title}</h3>
-							<p class="leading-4">{p.data.description}</p>
-						</figcaption>
+
+						<div class="flex flex-col items-center gap-2">
+							<figcaption class="bg-mauve dark:bg-dark sticky bottom-10 z-10 max-w-6xl rounded border p-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]">
+								<h3 class="text-center">{p.data.title}</h3>
+								<p class="pt-1 text-center leading-4">{p.data.description}</p>
+							</figcaption>
+							{p.data.link && (
+								<a
+									class="mobile-link inline-block w-45 rounded border px-8 py-2 text-center hover:bg-white/40 md:hidden"
+									href={p.data.link}
+									target="_blank"
+									rel="noopener"
+								>
+									view project ↗
+								</a>
+							)}
+						</div>
 					</li>
 				)
 			})
@@ -61,9 +93,47 @@ console.log('projectstest', projects[0].data)
 		opacity: 0;
 		transition: opacity 0.5s ease-in-out;
 	}
+	.extlink {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	.mobile-link:hover:before {
+		content: '(';
+		display: inline-block;
+		width: 0.4em;
+		margin-left: -0.4em;
+	}
+	.mobile-link:hover:after {
+		content: ')';
+		display: inline-block;
+		width: 0.4em;
+		margin-right: -0.4em;
+	}
 </style>
 
 <script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const filterSelect = document.getElementById('tag-filter')
+		const workItems = document.querySelectorAll('.work-item')
+		if (!filterSelect) return
+		filterSelect.addEventListener('change', (e) => {
+			const target = e.target as HTMLSelectElement
+			const selectedTag = target.value
+			console.log('Selected tag:', selectedTag)
+
+			workItems.forEach((item) => {
+				const workItem = item as HTMLElement
+				const itemTags = workItem.dataset.tags?.split(',') || []
+				if (itemTags.includes(selectedTag)) {
+					workItem.style.display = 'flex'
+				} else {
+					workItem.style.display = 'none'
+				}
+			})
+		})
+	})
 	let previousObserver: IntersectionObserver | null = null
 	let previousScrollHandler: EventListener | null = null
 

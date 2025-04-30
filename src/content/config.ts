@@ -22,7 +22,10 @@ const projectSchema = z.object({
 			alt: z.string()
 		})
 	),
-	body: z.string().optional()
+	body: z.string().optional(),
+	link: z.string().optional(),
+	publish: z.boolean().optional(),
+	order: z.number().optional()
 })
 
 const projectsCollection = defineCollection({
@@ -50,7 +53,8 @@ const aboutCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		links: z.array(linkSchema),
-		url: z.string()
+		url: z.string(),
+		services: z.array(z.string())
 	})
 })
 

@@ -1,19 +1,21 @@
 {
-	"title": "C van Confectie",
+	"publish": true,
+	"title": "C van Confectie - 2020",
 	"date": "2025-04-10T15:55:00",
-	"description": "A1 poster for the exhibition C van Confectie at 019 Ghent. 2020.",
-	"tags": ["selected", "print", "poster", "exhibition"],
+	"description": "Poster for the exhibition C van Confectie at 019 Ghent by Wouter Paijmans & Jules van den Langenberg",
+	"tags": ["all", "selected", "print", "exhibition"],
 	"images": [
 		{
-			"image": "/assets/media/POSTER_fresh_new_wouter-1449x2048.jpg",
-			"caption": "fqdfqsf",
-			"alt": "qfsdf"
+			"image": "/POSTER_fresh_new_wouter-1449x2048.jpg",
+			"caption": "Poster for C van Confectie",
+			"alt": "Poster for C van Confectie"
 		},
 		{
-			"image": "/assets/media/wouter_paijmans.jpg",
-			"caption": "qdfs",
-			"alt": "qdfsdf"
+			"image": "/wouter_paijmans.jpg",
+			"caption": "Poster for C van Confectie",
+			"alt": "Poster for C van Confectie"
 		}
 	],
+	"link": "https://019-ghent.org/exhibitions/c-van-confectie-wouter-paijmans-jules-van-de-langenberg/",
 	"body": ""
 }

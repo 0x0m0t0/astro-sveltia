@@ -1,16 +1,17 @@
 {
-	"title": "Reservoir 019",
+	"publish": true,
+	"order": 10,
+	"title": "Reservoir 019 - 2020",
 	"date": "2025-04-10T15:55:00",
-	"description": "A1 Poster for 019 Ghent Reservoir exhibition, the exhibition space got turned into a morass for a period of close to a year. 2020. Other work for this exhibition included production and organisation with the team. The poster included 3 variants.",
-	"tags": ["selected", "print", "poster", "exhibition"],
-
+	"description": "Poster for 019 Ghent Reservoir exhibition, the exhibition space becomes a knee-high morass.",
+	"tags": ["all", "selected", "print", "exhibition"],
 	"images": [
 		{
-			"image": "/assets/media/reservoir019.jpg",
+			"image": "/reservoir019.jpg",
 			"caption": "Reservoir 019",
 			"alt": "Reservoir 019"
 		}
 	],
-
+	"link": "https://019-ghent.org/exhibitions/reservoir/",
 	"body": ""
 }

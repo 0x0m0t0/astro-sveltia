@@ -19,7 +19,16 @@
 			"extension": "json",
 			"format": "json",
 			"slug": "{{slug}}",
+			"summary": "{{title}} - {{order}}",
 			"fields": [
+				{ "label": "Publish", "name": "publish", "widget": "boolean", "default": true },
+				{
+					"label": "Order",
+					"name": "order",
+					"widget": "number",
+					"default": 999,
+					"hint": "Set a number between 0 and 999 to set the display order of your navigation item."
+				},
 				{ "label": "Title", "name": "title", "widget": "string" },
 				{ "label": "Publish Date", "name": "date", "widget": "datetime" },
 				{ "label": "Description", "name": "description", "widget": "text" },
@@ -55,6 +64,7 @@
 						}
 					]
 				},
+				{ "label": "Link", "name": "link", "required": false, "widget": "string" },
 				{ "label": "Body", "name": "body", "required": false, "widget": "markdown" }
 			]
 		},
@@ -168,6 +178,13 @@
 							"name": "url",
 							"widget": "string",
 							"hint": "Your live site's full URL."
+						},
+						{
+							"label": "Services",
+							"name": "services",
+							"widget": "list",
+							"default": ["all"],
+							"hint": "Enter services separated by a comma"
 						}
 					]
 				}

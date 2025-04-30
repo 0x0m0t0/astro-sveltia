@@ -4,6 +4,7 @@ const { env } = Astro.locals.runtime
 const domain = env.DOMAIN
 import { SEO } from 'astro-seo'
 import Carousel from '@/components/Carousel.astro'
+import Contact from '@/components/Contact.astro'
 import Work from '@/components/Work.astro'
 ---
 
@@ -29,13 +30,7 @@ import Work from '@/components/Work.astro'
 			Freelance webdeveloper & graphic designer, based in Brussels, Belgium.
 		</p>
 		<Work />
-		<section class="my-10 mb-60 flex flex-col items-center">
-			<h3
-				class="bg-mauve dark:bg-dark hover:bg-dark dark:hover:bg-mauve hover:text-darkText dark:hover:text-mauve relative w-80 cursor-pointer rounded-md border px-4 py-8 text-center"
-			>
-				contact
-			</h3>
-		</section>
+		<Contact />
 	</main>
 </Layout>
 
