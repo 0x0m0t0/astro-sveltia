@@ -7,7 +7,7 @@
 		"site_domain": "astro-sveltia.vercel.app",
 		"base_url": "https://sveltia-cms-auth.cheguez.workers.dev"
 	},
-	"media_folder": "public/assets/media",
+	"media_folder": "src/assets/media",
 	"public_folder": "/",
 	"collections": [
 		{
