@@ -1,0 +1,252 @@
+---
+import { Image } from 'astro:assets'
+import Select from '@/components/Select.astro'
+import { getCollection } from 'astro:content'
+
+const projects = await getCollection('projects')
+
+const sortedProjects = [...projects].sort((a, b) => {
+	const orderA = a.data.order ?? Infinity
+	const orderB = b.data.order ?? Infinity
+	return orderA - orderB
+})
+---
+
+<section class="work-section mt-20 flex w-full flex-col items-center">
+	<Select data={sortedProjects} />
+	<ul class="flex max-w-6xl flex-col gap-20">
+		{
+			sortedProjects.map((p) => {
+				if (p.data.publish === false) {
+					return null
+				}
+				return (
+					<li
+						data-tags={p.data.tags ? p.data.tags.join(',') : ''}
+						class="work-item projects flex w-full flex-col items-center justify-end pb-8 transition-all duration-500 ease-out"
+					>
+						<div class="parent-element project-images mb-4 flex w-full max-w-full basis-auto flex-col items-end justify-center gap-4 transition-all duration-700 ease-out md:flex-row">
+							{p.data.images.map((media, index) => (
+								<div
+									class={`relative flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'} group`}
+								>
+									<Image
+										src={'/assets/media' + media.image}
+										alt={`${media.alt} - image ${index + 1}`}
+										width={1200}
+										height={600}
+										class="h-auto w-full rounded-md object-contain transition-all duration-700"
+										loading="lazy"
+										decoding="async"
+									/>
+									{p.data.link && (
+										<a
+											class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
+											href={p.data.link}
+											target="_blank"
+											rel="noopener"
+										>
+											view project ↗
+										</a>
+									)}
+								</div>
+							))}
+						</div>
+
+						<div class="flex w-full flex-col items-center gap-2 px-1">
+							<figcaption class="bg-mauve dark:bg-dark sticky bottom-10 z-10 w-full max-w-6xl rounded border p-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]">
+								<h3 class="text-center">{p.data.title}</h3>
+								<p class="pt-1 text-center leading-4">{p.data.description}</p>
+							</figcaption>
+							{p.data.link && (
+								<a
+									class="mobile-link inline-block w-45 rounded border px-8 py-2 text-center hover:bg-white/40 md:hidden"
+									href={p.data.link}
+									target="_blank"
+									rel="noopener"
+								>
+									view project ↗
+								</a>
+							)}
+						</div>
+					</li>
+				)
+			})
+		}
+	</ul>
+</section>
+<style>
+	figcaption {
+		opacity: 1;
+		transition: all 0.5s ease-in-out;
+	}
+	.project-images {
+		transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+	.projects {
+		scale: 1;
+	}
+	.scale {
+		transform: scale(0.6);
+	}
+	.fade {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+	}
+	.extlink {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	.mobile-link:hover:before {
+		content: '(';
+		display: inline-block;
+		width: 0.4em;
+		margin-left: -0.4em;
+	}
+	.mobile-link:hover:after {
+		content: ')';
+		display: inline-block;
+		width: 0.4em;
+		margin-right: -0.4em;
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const filterSelect = document.getElementById('tag-filter')
+		const workItems = document.querySelectorAll('.work-item')
+		if (!filterSelect) return
+		filterSelect.addEventListener('change', (e) => {
+			const target = e.target as HTMLSelectElement
+			const selectedTag = target.value
+			console.log('Selected tag:', selectedTag)
+
+			workItems.forEach((item) => {
+				const workItem = item as HTMLElement
+				const itemTags = workItem.dataset.tags?.split(',') || []
+				if (itemTags.includes(selectedTag)) {
+					workItem.style.display = 'flex'
+				} else {
+					workItem.style.display = 'none'
+				}
+			})
+		})
+	})
+	let previousObserver: IntersectionObserver | null = null
+	let previousScrollHandler: EventListener | null = null
+
+	const observerAnim = () => {
+		// clean up previous observers & scroll handlers
+		if (previousObserver) {
+			previousObserver.disconnect()
+		}
+		if (previousScrollHandler) {
+			window.removeEventListener('scroll', previousScrollHandler)
+		}
+
+		const cards = document.querySelectorAll('.projects')
+		// track which elements got classes
+		const processedElements = new Set()
+
+		// track scroll direction
+		let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop
+		let scrollDirection = 'down'
+
+		const scrollHandler = () => {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+			scrollDirection = scrollTop > lastScrollTop ? 'down' : 'up'
+			lastScrollTop = scrollTop
+		}
+
+		// Remove previous event listener if it exists
+		window.addEventListener('scroll', scrollHandler, { passive: true })
+		previousScrollHandler = scrollHandler
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const target = entry.target
+					const topPosition = entry.boundingClientRect.top
+
+					const viewportHeight = window.innerHeight
+
+					let applyThreshold = 100 // when to apply scrolling up
+					const removeThreshold = 80 // when to remove scrolling down
+
+					const projectImage = target.children[0].children[0].children[0] // image
+					const imageHeight = projectImage.getBoundingClientRect().height
+
+					// if image is taller than viewport or multiple images on mobile use a different threshold
+					if (
+						imageHeight > viewportHeight ||
+						(target.children[0].children.length > 1 && window.innerWidth < 768)
+					) {
+						// You could use a percentage of viewport height instead
+						applyThreshold = viewportHeight * 0.05
+
+						if (target.children[0].children.length > 1) {
+							let multiHeight = 0
+
+							Array.from(target.children[0].children).forEach((child) => {
+								multiHeight = child.getBoundingClientRect().height + multiHeight
+							})
+							applyThreshold = multiHeight * -0.8 //  threshold for multiple images
+						}
+					}
+
+					const shouldApply = scrollDirection === 'down' && topPosition <= applyThreshold
+					const shouldRemove = scrollDirection === 'up' && topPosition < removeThreshold
+					// console.log(
+					// 	'Element:',
+					// 	target,
+					// 	'Top position:',
+					// 	topPosition,
+					// 	'Direction:',
+					// 	scrollDirection,
+					// 	'Should Apply:',
+					// 	shouldApply,
+					// 	'Should Remove:',
+					// 	shouldRemove
+					// )
+
+					if (entry.isIntersecting && shouldApply && !processedElements.has(target)) {
+						target.classList.add('scale')
+						target.children[1].classList.add('fade')
+						processedElements.add(target)
+					}
+					// remove when scrolling down and going below threshold
+					else if (entry.isIntersecting && shouldRemove && processedElements.has(target)) {
+						target.classList.remove('borders', 'scale')
+						target.children[1].classList.remove('fade')
+						processedElements.delete(target)
+					}
+				})
+			},
+			{
+				threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+				rootMargin: '0px 0px 0px 0px'
+			}
+		)
+
+		// store the current observer to clean up later
+		previousObserver = observer
+
+		// First, check all elements on page load
+		cards.forEach((card) => {
+			const rect = card.getBoundingClientRect()
+			if (rect.top <= 100) {
+				card.classList.add('scale')
+				card.children[1].classList.add('fade')
+				processedElements.add(card)
+			}
+			observer.observe(card)
+		})
+	}
+
+	observerAnim()
+
+	// re-run observer after transition
+	document.addEventListener('astro:after-swap', observerAnim)
+</script>

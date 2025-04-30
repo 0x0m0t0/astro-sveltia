@@ -1,0 +1,17 @@
+{
+	"publish": true,
+	"order": 10,
+	"title": "Reservoir 019 - 2020",
+	"date": "2025-04-10T15:55:00",
+	"description": "Poster for 019 Ghent Reservoir exhibition, the exhibition space becomes a knee-high morass.",
+	"tags": ["all", "selected", "print", "exhibition"],
+	"images": [
+		{
+			"image": "/reservoir019.jpg",
+			"caption": "Reservoir 019",
+			"alt": "Reservoir 019"
+		}
+	],
+	"link": "https://019-ghent.org/exhibitions/reservoir/",
+	"body": ""
+}

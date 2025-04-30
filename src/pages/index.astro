@@ -4,6 +4,8 @@ const { env } = Astro.locals.runtime
 const domain = env.DOMAIN
 import { SEO } from 'astro-seo'
 import Carousel from '@/components/Carousel.astro'
+import Contact from '@/components/Contact.astro'
+import Work from '@/components/Work.astro'
 ---
 
 <Layout title="oxomoto" class="h-screen">
@@ -23,11 +25,18 @@ import Carousel from '@/components/Carousel.astro'
 		slot="head"
 	/>
 
-	<main class="leading-3">
-		<p class="max-w-prose px-2 pt-2 text-sm md:pt-0">
-			Freelance developer & designer, based in Brussels, Belgium. Specialized in graphic design, web
-			development, typography, ux/ui design and branding.
+	<main class="flex flex-col">
+		<p class="desc prose rounded-md border p-4">
+			Freelance webdeveloper & graphic designer, based in Brussels, Belgium.
 		</p>
-		<!-- <Carousel /> -->
+		<Work />
+		<Contact />
 	</main>
 </Layout>
+
+<style>
+	.desc {
+		margin: 20px auto;
+		line-height: 1rem;
+	}
+</style>

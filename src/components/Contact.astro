@@ -1,0 +1,204 @@
+---
+
+---
+
+<section class="my-10 mb-60 flex flex-col items-center">
+	<!-- Add this button to open the modal -->
+	<button
+		id="open-modal"
+		data-track="Contact Form Open"
+		class="bg-mauve dark:bg-dark sticky z-10 my-10 w-80 max-w-80 cursor-pointer rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]"
+		>Get in touch</button
+	>
+
+	<dialog id="contact-modal" class="bg-dark dark:bg-mauve rounded-md border text-green-500">
+		<form id="contact-form" method="dialog">
+			<h2 class="my-10 text-center">Get in touch or just say hello</h2>
+			<div class="form-group">
+				<label for="name">( name )</label>
+				<input class="border" type="text" id="name" name="name" required />
+			</div>
+			<div class="form-group">
+				<label for="email">( email )</label>
+				<input class="border" type="email" id="email" name="email" required />
+			</div>
+			<div class="form-group">
+				<label for="message">( message )</label>
+				<textarea class="border" id="message" name="message" rows="4" required></textarea>
+			</div>
+			<div class="form-actions">
+				<button type="button" id="cancel-button" class="btn-secondary border">Cancel</button>
+				<button type="submit" class="btn-primary border bg-green-500/40 dark:bg-green-500/40"
+					>Send Message</button
+				>
+			</div>
+		</form>
+	</dialog>
+</section>
+<style>
+	.contact-container {
+		margin: 2rem 0;
+	}
+
+	dialog {
+		position: fixed;
+		z-index: 200;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(0.9);
+		margin: 0;
+		padding: 2rem;
+		max-width: 500px;
+		width: calc(100% - 2rem);
+		opacity: 0;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+	}
+
+	dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	dialog[open] {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	dialog[open]::backdrop {
+		opacity: 1;
+	}
+
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.5rem;
+		text-align: center;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 0.75rem;
+		border-radius: 0.375rem;
+		transition: border-color 0.2s;
+	}
+
+	/* input:focus,
+	textarea:focus {
+		outline: none;
+		border-color: var(--color-darkSand);
+		box-shadow: 0 0 0 1px var(--color-darkSand);
+	} */
+
+	.form-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.btn-primary,
+	.btn-secondary {
+		padding: 0.75rem 1.5rem;
+		cursor: pointer;
+		border-radius: 0.25rem;
+	}
+
+	#open-modal:hover:before {
+		content: '(';
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em;
+	}
+	#open-modal:hover:after {
+		content: ')';
+		display: inline-block;
+		width: 1em;
+		margin-right: -1em;
+	}
+</style>
+
+<script>
+	document.addEventListener(
+		'astro:page-load',
+		() => {
+			const dialog: HTMLDialogElement = document.getElementById('contact-modal')
+			const openButton = document.getElementById('open-modal')
+			const cancelButton = document.getElementById('cancel-button')
+			const form = document.getElementById('contact-form')
+
+			dialog.open = false
+			// Open modal
+			openButton.addEventListener('click', () => {
+				dialog.showModal()
+			})
+
+			// Close modal with cancel button
+			cancelButton.addEventListener('click', () => {
+				dialog.close()
+			})
+
+			// Close when clicking outside
+			dialog.addEventListener('click', (event) => {
+				const dialogDimensions = dialog.getBoundingClientRect()
+				if (
+					event.clientX < dialogDimensions.left ||
+					event.clientX > dialogDimensions.right ||
+					event.clientY < dialogDimensions.top ||
+					event.clientY > dialogDimensions.bottom
+				) {
+					dialog.close()
+				}
+			})
+
+			// Form submission
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault()
+
+				const formData = new FormData(form)
+				const formJson = Object.fromEntries(formData.entries())
+
+				try {
+					const res = await fetch('/api/contact', {
+						method: 'POST',
+						body: JSON.stringify(formJson),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
+
+					// Log the text response to see what's being returned
+					const text = await res.text()
+					console.log('Raw response:', text)
+
+					// Only try to parse as JSON if it's valid
+					let data
+					try {
+						data = JSON.parse(text)
+					} catch (parseError) {
+						console.error('Failed to parse response as JSON:', parseError)
+						throw new Error('Server response was not valid JSON')
+					}
+
+					if (res.ok) {
+						dialog.close()
+						// alert('Message sent successfully!')
+						form.reset()
+					} else {
+						throw new Error(data.error || 'Failed to send message')
+					}
+				} catch (error) {
+					console.error(error)
+					alert('Error: ' + error.message)
+				}
+			})
+		},
+		{ once: false }
+	)
+</script>

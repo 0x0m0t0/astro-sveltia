@@ -5,53 +5,80 @@
 const { class: className, style } = Astro.props
 ---
 
-<div id="dark-mode-toggle" style={style} class=`hover:underline hover:cursor-pointer ${className}`>
+<div
+	id="dark-mode-toggle"
+	style={style}
+	class=`w-80 bg-mauve dark:bg-dark flex justify-center rounded-md border p-2 px-4 hover:cursor-pointer ${className}`
+	transition:persist
+>
 	<p id="sun">theme: light</p>
 	<p id="moon">theme: dark</p>
 	<p id="system">theme: system</p>
 </div>
 
 <script>
-	const darkModeToggler = document.getElementById('dark-mode-toggle') as HTMLDivElement
-	const darkMoon = document.getElementById('moon')
-	const lightSun = document.getElementById('sun')
-	const systemComputer = document.getElementById('system')
-
-	type Theme = 'dark' | 'light' | 'system'
-
-	const getCurrentTheme = (): Theme => {
+	// Function to apply theme based on localStorage
+	function applyTheme() {
 		const theme = localStorage.getItem('theme')
-		if (!theme) {
-			return 'system'
-		}
+		const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
-		return theme as Theme
-	}
-
-	const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-
-	const adjustIconForTheme = (theme: Theme) => {
-		if (theme === 'light') {
-			darkMoon?.classList.add('hidden')
-			lightSun?.classList.remove('hidden')
-			systemComputer?.classList.add('hidden')
-		} else if (theme === 'dark') {
-			darkMoon?.classList.remove('hidden')
-			lightSun?.classList.add('hidden')
-			systemComputer?.classList.add('hidden')
-		} else {
-			darkMoon?.classList.add('hidden')
-			lightSun?.classList.add('hidden')
-			systemComputer?.classList.remove('hidden')
+		if (theme === 'dark' || (!theme && isSystemDark)) {
+			document.documentElement.classList.add('dark')
+		} else if (theme === 'light') {
+			document.documentElement.classList.remove('dark')
+		} else if (theme === 'system' && isSystemDark) {
+			document.documentElement.classList.add('dark')
+		} else if (theme === 'system' && !isSystemDark) {
+			document.documentElement.classList.remove('dark')
 		}
 	}
 
-	if (darkModeToggler) {
-		const theme = getCurrentTheme()
-		adjustIconForTheme(theme)
+	// Function to set up the dark mode toggle functionality
+	function setupDarkModeToggle() {
+		const darkModeToggler = document.getElementById('dark-mode-toggle')
+		const darkMoon = document.getElementById('moon')
+		const lightSun = document.getElementById('sun')
+		const systemComputer = document.getElementById('system')
 
-		darkModeToggler.addEventListener('click', () => {
+		if (!darkModeToggler || !darkMoon || !lightSun || !systemComputer) {
+			return // Exit if elements aren't found
+		}
+
+		// Get current theme
+		const getCurrentTheme = (): 'light' | 'dark' | 'system' => {
+			const theme = localStorage.getItem('theme')
+			if (!theme) {
+				return 'system'
+			}
+			return theme as 'light' | 'dark' | 'system'
+		}
+
+		const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+		// Update visible icon based on current theme
+		const adjustIconForTheme = (theme: 'light' | 'dark' | 'system') => {
+			if (theme === 'light') {
+				darkMoon.classList.add('hidden')
+				lightSun.classList.remove('hidden')
+				systemComputer.classList.add('hidden')
+			} else if (theme === 'dark') {
+				darkMoon.classList.remove('hidden')
+				lightSun.classList.add('hidden')
+				systemComputer.classList.add('hidden')
+			} else {
+				darkMoon.classList.add('hidden')
+				lightSun.classList.add('hidden')
+				systemComputer.classList.remove('hidden')
+			}
+		}
+
+		// Initial adjustment
+		adjustIconForTheme(getCurrentTheme())
+
+		// Remove old listener by using once: true
+		darkModeToggler.onclick = function () {
 			const theme = getCurrentTheme()
+
 			if (theme === 'dark') {
 				localStorage.setItem('theme', 'light')
 				document.documentElement.classList.remove('dark')
@@ -66,7 +93,20 @@ const { class: className, style } = Astro.props
 				localStorage.setItem('theme', 'dark')
 				document.documentElement.classList.add('dark')
 			}
+
 			adjustIconForTheme(getCurrentTheme())
-		})
+		}
 	}
+
+	// Apply theme immediately
+	applyTheme()
+
+	// Run the setup on initial load
+	setupDarkModeToggle()
+
+	// Apply theme after DOM swap during navigation
+	document.addEventListener('astro:after-swap', applyTheme)
+
+	// Run the setup after each page transition
+	document.addEventListener('astro:page-load', setupDarkModeToggle)
 </script>

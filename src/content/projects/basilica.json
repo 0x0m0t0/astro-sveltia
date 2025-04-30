@@ -1,0 +1,17 @@
+{
+	"publish": true,
+	"order": 1,
+	"title": "Basilica Coworking - 2025",
+	"date": "2025-04-10T15:55:00",
+	"description": "Design & Development of the new Basilica Coworking site.",
+	"tags": ["all", "selected", "website"],
+	"images": [
+		{
+			"image": "/basilica-site.jpg",
+			"caption": "Frontpage Basilica Coworking",
+			"alt": "Frontpage Basilica Coworking"
+		}
+	],
+	"link": "https://basilicacoworking.be",
+	"body": ""
+}

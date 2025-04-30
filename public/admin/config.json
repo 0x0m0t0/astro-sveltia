@@ -1,0 +1,213 @@
+{
+	"backend": {
+		"name": "github",
+		"repo": "0x0m0t0/astro-sveltia",
+		"branch": "dev",
+
+		"site_domain": "astro-sveltia.vercel.app",
+		"base_url": "https://sveltia-cms-auth.cheguez.workers.dev"
+	},
+	"media_folder": "public/assets/media",
+	"public_folder": "/",
+	"collections": [
+		{
+			"name": "work",
+			"label": "Projects",
+			"label_singular": "Project",
+			"folder": "src/content/projects",
+			"create": true,
+			"extension": "json",
+			"format": "json",
+			"slug": "{{slug}}",
+			"summary": "{{title}} - {{order}}",
+			"fields": [
+				{ "label": "Publish", "name": "publish", "widget": "boolean", "default": true },
+				{
+					"label": "Order",
+					"name": "order",
+					"widget": "number",
+					"default": 999,
+					"hint": "Set a number between 0 and 999 to set the display order of your navigation item."
+				},
+				{ "label": "Title", "name": "title", "widget": "string" },
+				{ "label": "Publish Date", "name": "date", "widget": "datetime" },
+				{ "label": "Description", "name": "description", "widget": "text" },
+				{
+					"label": "Tags",
+					"name": "tags",
+					"widget": "list",
+					"default": ["all"],
+					"hint": "Enter tags separated by a comma"
+				},
+				{
+					"label": "Image Gallery",
+					"name": "images",
+					"widget": "list",
+					"summary": "{{fields.caption}}",
+					"fields": [
+						{
+							"label": "Image",
+							"name": "image",
+							"widget": "image",
+							"hint": "Upload an image for the gallery."
+						},
+						{
+							"label": "Caption",
+							"name": "caption",
+							"widget": "string",
+							"required": false
+						},
+						{
+							"label": "Alt Text",
+							"name": "alt",
+							"widget": "string"
+						}
+					]
+				},
+				{ "label": "Link", "name": "link", "required": false, "widget": "string" },
+				{ "label": "Body", "name": "body", "required": false, "widget": "markdown" }
+			]
+		},
+		{
+			"name": "pages",
+			"label": "Pages",
+			"label_singular": "Page",
+			"folder": "pages",
+			"create": true,
+			"slug": "{{slug}}",
+			"fields": [
+				{ "label": "Title", "name": "title", "widget": "string" },
+				{ "label": "Publish Date", "name": "date", "widget": "datetime" },
+				{ "label": "Permalink", "name": "permalink", "widget": "hidden" },
+				{
+					"label": "Navigation",
+					"name": "eleventyNavigation",
+					"widget": "object",
+					"fields": [
+						{
+							"label": "Key",
+							"name": "key",
+							"widget": "string",
+							"hint": "A unique string for your navigation item, typically the page slug."
+						},
+						{
+							"label": "Title",
+							"name": "title",
+							"widget": "string",
+							"hint": "The visible title of the navigation item."
+						},
+						{
+							"label": "Order",
+							"name": "order",
+							"widget": "number",
+							"default": 999,
+							"hint": "Set a number between 0 and 999 to set the display order of your navigation item."
+						}
+					]
+				},
+				{
+					"label": "Body",
+					"name": "body",
+					"widget": "markdown",
+					"hint": "Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+				}
+			]
+		},
+		{
+			"name": "settings",
+			"label": "Settings",
+			"icon": "settings",
+			"extension": "yml",
+			"format": "yml",
+			"files": [
+				{
+					"file": "_data/settings.yml",
+					"label": "Site Settings",
+					"name": "site",
+					"fields": [
+						{
+							"label": "Site Title",
+							"name": "title",
+							"widget": "string",
+							"hint": "Your site's title, used for branding and SEO."
+						},
+						{
+							"label": "Site Description",
+							"name": "description",
+							"widget": "text",
+							"hint": "Your site's description, used for SEO."
+						},
+						{
+							"label": "Site URL",
+							"name": "url",
+							"widget": "string",
+							"hint": "Your live site's full URL."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "about",
+			"label": "About",
+			"files": [
+				{
+					"file": "src/content/about/about.md",
+					"label": "About",
+					"name": "about",
+					"fields": [
+						{
+							"label": "Description",
+							"name": "body",
+							"widget": "markdown",
+							"hint": "Plain text, Markdown, and HTML formatting is supported. See the Markdown cheat sheet: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+						},
+						{
+							"label": "Links",
+							"name": "links",
+							"widget": "list",
+							"fields": [
+								{ "label": "Label", "name": "label", "widget": "string" },
+								{ "label": "URL", "name": "url", "widget": "string" },
+								{ "label": "Handle", "name": "handle", "widget": "string" }
+							],
+							"hint": "List of links"
+						},
+						{
+							"label": "Site URL",
+							"name": "url",
+							"widget": "string",
+							"hint": "Your live site's full URL."
+						},
+						{
+							"label": "Services",
+							"name": "services",
+							"widget": "list",
+							"default": ["all"],
+							"hint": "Enter services separated by a comma"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "now",
+			"label": "Now",
+			"files": [
+				{
+					"file": "src/content/now/now.md",
+					"label": "Now",
+					"name": "now",
+					"fields": [
+						{
+							"label": "Activities",
+							"name": "activities",
+							"widget": "list",
+							"fields": [{ "label": "Activity", "name": "activity", "widget": "string" }]
+						}
+					]
+				}
+			]
+		}
+	]
+}

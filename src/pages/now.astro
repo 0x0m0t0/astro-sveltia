@@ -9,20 +9,19 @@ import Layout from '../layouts/Layout.astro'
 import Movies from '../components/Movies.astro'
 ---
 
-<Layout title="Now" class="h-full md:h-screen">
-	<main class="flex h-full flex-col gap-4 px-0 md:px-4">
-		<section>
-			<h2 class="pt-2 text-stone-400 md:pt-0">now</h2>
+<Layout title="Now" class="">
+	<main class="flex h-full flex-col items-center gap-4 px-0 md:px-4">
+		<section class="w-80">
+			<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center">Now</h2>
 			<ul aria-label="now activities" class="now">
 				{
 					now[0].data.activities.map((a, i) => {
-						return <li style={`--order: ${i};`}>{a.activity}</li>
+						return <li>{a.activity}</li>
 					})
 				}
 			</ul>
 		</section>
-		<section class="flex items-center justify-between">
-			<!-- Astro component cannot use client:idle; needs to be refactored with svelte -->
+		<section class="flex w-80 items-center justify-between">
 			<Movies />
 		</section>
 	</main>
@@ -37,6 +36,5 @@ import Movies from '../components/Movies.astro'
 	}
 	li {
 		padding-bottom: 0.25rem;
-		padding-left: calc(var(--order) * 0.5rem);
 	}
 </style>

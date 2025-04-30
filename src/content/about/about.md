@@ -10,14 +10,16 @@ links:
   - label: are.na
     url: https://www.are.na/oxomoto/index
     handle: "@oxomoto"
-  - label: twitter
-    url: https://twitter.com/oxomoto
+  - label: bluesky
+    url: https://bsky.app/profile/oxomoto.bsky.social
     handle: "@oxomoto"
   - label: mastodon
     url: https://post.lurk.org/@oxomoto
     handle: "@oxomoto@post.lurk.org"
 url: oxomoto.co
+services: ['art direction','web development','graphic design', 'branding','ui/ux','typography','seo','e-commerce']
 ---
 
-Design and development practice of Louis Desmet. Brussels based.
-Open for projects & collaboration starting February 2025.
+Design and development practice of Louis Desmet. Brussels based. 
+
+Open for projects & collaboration starting May 2025.
