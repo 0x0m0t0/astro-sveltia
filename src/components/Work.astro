@@ -31,7 +31,7 @@ const sortedProjects = [...projects].sort((a, b) => {
 									class={`relative flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'} group`}
 								>
 									<Image
-										src={'src/assets/media' + media.image}
+										src={'/assets/media' + media.image}
 										alt={`${media.alt} - image ${index + 1}`}
 										width={1200}
 										height={600}
