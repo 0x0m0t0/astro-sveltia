@@ -11,19 +11,19 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.5.2",
+		"@astrojs/cloudflare": "12.5.3",
 		"@astrojs/partytown": "^2.1.4",
 		"@astrojs/tailwind": "6.0.2",
-		"@tailwindcss/vite": "^4.1.4",
-		"astro": "5.7.10",
+		"@tailwindcss/vite": "^4.1.6",
+		"astro": "5.7.13",
 		"astro-seo": "^0.8.4",
 		"keen-slider": "^6.8.6",
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-tailwindcss": "^0.6.11",
-		"resend": "^4.4.1",
-		"tailwindcss": "^4.1.4",
-		"wrangler": "^4.14.0"
+		"resend": "^4.5.1",
+		"tailwindcss": "^4.1.6",
+		"wrangler": "^4.15.1"
 	},
 	"resolutions": {
 		"string-width": "4.2.3"

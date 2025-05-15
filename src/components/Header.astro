@@ -1,9 +1,10 @@
 ---
 import Hamburger from './hamburger.svg'
+import Contact from './Contact.astro'
 const Links = [
 	{
 		path: '/',
-		label: 'index'
+		label: 'home'
 	},
 	{
 		path: '/about',
@@ -18,12 +19,12 @@ const Links = [
 
 <header class="sticky flex w-full justify-center" transition:persist>
 	<nav
-		class="bg-mauve dark:bg-dark relative flex w-80 flex-wrap justify-between rounded-md border p-2 px-4"
+		class="bg-mauve dark:bg-dark relative flex w-80 flex-wrap justify-between rounded-md border px-4"
 	>
 		<div class="flex w-full items-center">
-			<a href="/" class="w-1/3 cursor-pointer text-center">oxomoto</a>
-			<a href="/about" class="w-1/3 cursor-pointer text-center">info</a>
-			<button id="togglez" class="w-1/3 cursor-pointer" aria-label="Menu" data-track="Menu open">
+			<a href="/" class="w-1/3 cursor-pointer text-center p-2">oxomoto</a>
+			<a href="/about" class="w-1/3 cursor-pointer text-center p-2">info</a>
+			<button id="togglez" class="w-1/3 cursor-pointer p-2" aria-label="Menu" data-track="Menu open">
 				<Hamburger class="hamburger m-auto h-6 w-6 cursor-pointer" />
 			</button>
 		</div>
@@ -33,14 +34,14 @@ const Links = [
 			class="bg-mauve dark:bg-dark fixed left-1/2 w-80 -translate-x-1/2 transform overflow-hidden rounded-b-md border border-t-0 transition-all duration-300 ease-in-out"
 			style="top: calc(var(--nav-height) + 0.1rem); max-height: 0; opacity: 0;"
 		>
-			<div class="flex flex-col gap-4 p-4">
+			<div class="flex flex-col gap-1 p-4">
 				{
 					Links.length > 0
 						? Links.map((l, i) => {
 								return (
 									<a
 										href={l.path}
-										class="btn w-full rounded-md text-center"
+										class="btn w-full rounded-md text-center p-3"
 										style={`--order: ${i};`}
 									>
 										{l.label}
@@ -49,7 +50,10 @@ const Links = [
 							})
 						: null
 				}
+			<Contact class="" marginY="my-1"/>
+
 			</div>
+			
 		</div>
 	</nav>
 </header>
@@ -170,13 +174,13 @@ const Links = [
 		animation-delay: calc(var(--order) * 0.1s);
 	}
 
-	#navz div a:hover:before {
+	nav div a:hover:before {
 		content: '(';
 		display: inline-block;
 		width: 1em;
 		margin-left: -1em;
 	}
-	#navz div a:hover:after {
+	nav div a:hover:after {
 		content: ')';
 		display: inline-block;
 		width: 1em;

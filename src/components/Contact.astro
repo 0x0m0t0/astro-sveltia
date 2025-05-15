@@ -1,15 +1,15 @@
 ---
+const { class: className,marginY='my-10' } = Astro.props
+
 
 ---
 
-<section class="my-10 mb-60 flex flex-col items-center">
-	<!-- Add this button to open the modal -->
 	<button
 		id="open-modal"
 		data-track="Contact Form Open"
-		class="bg-mauve dark:bg-dark sticky z-10 my-10 w-80 max-w-80 cursor-pointer rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:w-[50vw]"
-		>Get in touch</button
-	>
+		class:list={[
+		`bg-mauve dark:bg-dark z-10 ${marginY} max-w-80 cursor-pointer rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]`,
+		className]}>Get in touch</button>
 
 	<dialog id="contact-modal" class="bg-dark dark:bg-mauve rounded-md border text-green-500">
 		<form id="contact-form" method="dialog">
@@ -34,7 +34,7 @@
 			</div>
 		</form>
 	</dialog>
-</section>
+
 <style>
 	.contact-container {
 		margin: 2rem 0;
