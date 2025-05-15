@@ -3,8 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 const { env } = Astro.locals.runtime
 const domain = env.DOMAIN
 import { SEO } from 'astro-seo'
-import Carousel from '@/components/Carousel.astro'
-import Contact from '@/components/Contact.astro'
+
 import Work from '@/components/Work.astro'
 ---
 
@@ -30,7 +29,8 @@ import Work from '@/components/Work.astro'
 			Freelance webdeveloper & graphic designer, based in Brussels, Belgium.
 		</p>
 		<Work />
-		<Contact />
+	
+	
 	</main>
 </Layout>
 
