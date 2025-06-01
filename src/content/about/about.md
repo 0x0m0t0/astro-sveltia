@@ -27,6 +27,8 @@ services:
   - e-commerce
 title: About
 ---
+Updating this now.
+
 Design and development practice of Louis Desmet. Brussels based. 
 
 Open for projects & collaboration starting May 2025.
