@@ -33,14 +33,6 @@ const projectsCollection = defineCollection({
 	schema: projectSchema
 })
 
-const authorsCollection = defineCollection({
-	type: 'content',
-	schema: z.object({
-		name: z.string(),
-		image: z.string()
-	})
-})
-
 const nowCollection = defineCollection({
 	type: 'content',
 	schema: z.object({
@@ -61,6 +53,5 @@ const aboutCollection = defineCollection({
 export const collections = {
 	about: aboutCollection,
 	now: nowCollection,
-	authors: authorsCollection,
 	projects: projectsCollection
 }

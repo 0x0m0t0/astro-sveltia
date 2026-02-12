@@ -1,0 +1,16 @@
+---
+export const prerender = false
+
+import Layout from '../layouts/Layout.astro'
+import MemosLog from '@/components/svelte/MemosLog.svelte'
+
+const memosApiUrl = import.meta.env.MEMOS_API_URL || ''
+---
+
+<Layout title="Log">
+	<main class="flex h-full flex-col items-center gap-4 px-4">
+		<section class="h-full w-full max-w-5xl">
+			<MemosLog client:load apiUrl={memosApiUrl} />
+		</section>
+	</main>
+</Layout>

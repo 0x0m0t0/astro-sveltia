@@ -11,21 +11,34 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.5.2",
+		"@astrojs/cloudflare": "12.6.12",
 		"@astrojs/partytown": "^2.1.4",
+		"@astrojs/svelte": "^7.2.5",
 		"@astrojs/tailwind": "6.0.2",
-		"@tailwindcss/vite": "^4.1.4",
-		"astro": "5.7.10",
-		"astro-seo": "^0.8.4",
+		"@tailwindcss/vite": "^4.1.18",
+		"astro": "5.17.2",
+		"astro-seo": "^1.1.0",
+		"d3-drag": "^3.0.0",
+		"d3-geo": "^3.1.1",
+		"d3-interpolate": "^3.0.1",
+		"d3-selection": "^3.0.0",
+		"d3-timer": "^3.0.1",
+		"d3-zoom": "^3.0.0",
 		"keen-slider": "^6.8.6",
-		"prettier": "^3.5.3",
+		"prettier": "^3.8.1",
 		"prettier-plugin-astro": "^0.14.1",
-		"prettier-plugin-tailwindcss": "^0.6.11",
-		"resend": "^4.4.1",
-		"tailwindcss": "^4.1.4",
-		"wrangler": "^4.14.0"
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"resend": "^6.9.2",
+		"svelte": "^5.50.2",
+		"tailwindcss": "^4.1.18",
+		"topojson-client": "^3.1.0",
+		"typescript": "^5.9.3",
+		"wrangler": "^4.65.0"
 	},
 	"resolutions": {
 		"string-width": "4.2.3"
+	},
+	"devDependencies": {
+		"@types/d3-geo": "^3.1.0"
 	}
 }

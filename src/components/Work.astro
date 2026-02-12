@@ -30,42 +30,33 @@ const sortedProjects = [...projects].sort((a, b) => {
 								<div
 									class={`relative flex ${p.data.images.length === 1 ? 'mx-auto w-full' : 'flex-1'} group`}
 								>
+									{p.data.link ? (
+										<a href={p.data.link} target="_blank" rel="noopener" data-track={p.data.title}>
+											<Image
+												src={'/assets/media' + media.image}
+												alt={`${media.alt} - image ${index + 1}`}
+												width={1200}
+												height={600}
+												class="h-auto w-full rounded-md object-contain transition-all duration-700"
+												loading={index === 0 ? 'eager' : 'lazy'}
+												decoding="async"
+											/>
 
-  {p.data.link ?
-
-	<a					href={p.data.link}
-											target="_blank"
-											rel="noopener"
-											data-track={p.data.title}
-										>
-									<Image
-										src={'/assets/media' + media.image}
-										alt={`${media.alt} - image ${index + 1}`}
-										width={1200}
-										height={600}
-										class="h-auto w-full rounded-md object-contain transition-all duration-700"
-										loading={index === 0 ? 'eager' : 'lazy'}
-										decoding="async"
-									/>
-									
-										<span
-											class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
-								
-										>
-											view project ↗
-										</span>
-									</a>
-								
-								:
-									<Image
-										src={'/assets/media' + media.image}
-										alt={`${media.alt} - image ${index + 1}`}
-										width={1200}
-										height={600}
-										class="h-auto w-full rounded-md object-contain transition-all duration-700"
-										loading={index === 0 ? 'eager' : 'lazy'}
-										decoding="async"
-									/>}
+											<span class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block">
+												view project ↗
+											</span>
+										</a>
+									) : (
+										<Image
+											src={'/assets/media' + media.image}
+											alt={`${media.alt} - image ${index + 1}`}
+											width={1200}
+											height={600}
+											class="h-auto w-full rounded-md object-contain transition-all duration-700"
+											loading={index === 0 ? 'eager' : 'lazy'}
+											decoding="async"
+										/>
+									)}
 								</div>
 							))}
 						</div>
@@ -132,26 +123,34 @@ const sortedProjects = [...projects].sort((a, b) => {
 </style>
 
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const filterSelect = document.getElementById('tag-filter')
+	function applyFilter(selectedTag: string) {
 		const workItems = document.querySelectorAll('.work-item')
-		if (!filterSelect) return
-		filterSelect.addEventListener('change', (e) => {
-			const target = e.target as HTMLSelectElement
-			const selectedTag = target.value
-			console.log('Selected tag:', selectedTag)
-
-			workItems.forEach((item) => {
-				const workItem = item as HTMLElement
+		workItems.forEach((item) => {
+			const workItem = item as HTMLElement
+			if (selectedTag === 'selected') {
+				workItem.style.display = 'flex'
+			} else {
 				const itemTags = workItem.dataset.tags?.split(',') || []
-				if (itemTags.includes(selectedTag)) {
-					workItem.style.display = 'flex'
-				} else {
-					workItem.style.display = 'none'
-				}
-			})
+				workItem.style.display = itemTags.includes(selectedTag) ? 'flex' : 'none'
+			}
 		})
-	})
+	}
+
+	function initFilter() {
+		const filterSelect = document.getElementById('tag-filter') as HTMLSelectElement | null
+		if (!filterSelect) return
+
+		// Apply current value on load (handles browser form restore & navigation)
+		applyFilter(filterSelect.value)
+
+		filterSelect.addEventListener('change', (e) => {
+			applyFilter((e.target as HTMLSelectElement).value)
+		})
+	}
+
+	initFilter()
+	document.addEventListener('astro:after-swap', initFilter)
+
 	let previousObserver: IntersectionObserver | null = null
 	let previousScrollHandler: EventListener | null = null
 

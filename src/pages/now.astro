@@ -7,6 +7,26 @@ const now = await getCollection('now')
 
 import Layout from '../layouts/Layout.astro'
 import Movies from '../components/Movies.astro'
+import MemoCard from '../components/svelte/memos/MemoCard.svelte'
+
+// Fetch latest public memo
+let latestMemo: any = null
+try {
+	const memosApiUrl = import.meta.env.MEMOS_API_URL
+	if (memosApiUrl) {
+		const res = await fetch(
+			`${memosApiUrl}/api/v1/memos?filter=${encodeURIComponent('visibility == "PUBLIC"')}&pageSize=1`
+		)
+		if (res.ok) {
+			const data = await res.json()
+			if (data.memos?.length) {
+				latestMemo = data.memos[0]
+			}
+		}
+	}
+} catch (e) {
+	console.error('Failed to fetch latest memo:', e)
+}
 ---
 
 <Layout title="Now" class="">
@@ -21,7 +41,13 @@ import Movies from '../components/Movies.astro'
 				}
 			</ul>
 		</section>
-		<section class="flex w-80 items-center justify-between">
+		<section class="w-80">
+			<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center">Log</h2>
+			{latestMemo && <MemoCard client:load memo={latestMemo} selectedTags={[]} onToggleTag={() => {}} onOpenLightbox={() => {}} />}
+			<a class="text-xs" href="/log">view more</a>
+		</section>
+		<section class="flex w-80 flex-col items-center justify-between">
+			<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center">Films</h2>
 			<Movies />
 		</section>
 	</main>
@@ -36,5 +62,11 @@ import Movies from '../components/Movies.astro'
 	}
 	li {
 		padding-bottom: 0.25rem;
+	}
+	a {
+		text-decoration: underline;
+	}
+	a:hover {
+		text-decoration: none;
 	}
 </style>
