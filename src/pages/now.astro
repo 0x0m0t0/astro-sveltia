@@ -12,7 +12,8 @@ import MemoCard from '../components/svelte/memos/MemoCard.svelte'
 // Fetch latest public memo
 let latestMemo: any = null
 try {
-	const memosApiUrl = import.meta.env.MEMOS_API_URL
+	const { env } = Astro.locals.runtime
+	const memosApiUrl = env.MEMOS_API_URL
 	if (memosApiUrl) {
 		const res = await fetch(
 			`${memosApiUrl}/api/v1/memos?filter=${encodeURIComponent('visibility == "PUBLIC"')}&pageSize=1`

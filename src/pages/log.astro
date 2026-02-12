@@ -4,7 +4,8 @@ export const prerender = false
 import Layout from '../layouts/Layout.astro'
 import MemosLog from '@/components/svelte/MemosLog.svelte'
 
-const memosApiUrl = import.meta.env.MEMOS_API_URL || ''
+const { env } = Astro.locals.runtime
+const memosApiUrl = env.MEMOS_API_URL || ''
 ---
 
 <Layout title="Log">
