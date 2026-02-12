@@ -1,39 +1,39 @@
 ---
-const { class: className,marginY='my-10' } = Astro.props
-
-
+const { class: className, marginY = 'my-10' } = Astro.props
 ---
 
-	<button
-		id="open-modal"
-		data-track="Contact Form Open"
-		class:list={[
+<button
+	id="open-modal"
+	data-track="Contact Form Open"
+	class:list={[
 		`bg-mauve dark:bg-dark z-10 ${marginY} max-w-80 cursor-pointer rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]`,
-		className]}>Get in touch</button>
+		className
+	]}>Get in touch</button
+>
 
-	<dialog id="contact-modal" class="bg-dark dark:bg-mauve rounded-md border text-green-500">
-		<form id="contact-form" method="dialog">
-			<h2 class="my-10 text-center">Get in touch or just say hello</h2>
-			<div class="form-group">
-				<label for="name">( name )</label>
-				<input class="border" type="text" id="name" name="name" required />
-			</div>
-			<div class="form-group">
-				<label for="email">( email )</label>
-				<input class="border" type="email" id="email" name="email" required />
-			</div>
-			<div class="form-group">
-				<label for="message">( message )</label>
-				<textarea class="border" id="message" name="message" rows="4" required></textarea>
-			</div>
-			<div class="form-actions">
-				<button type="button" id="cancel-button" class="btn-secondary border">Cancel</button>
-				<button type="submit" class="btn-primary border bg-green-500/40 dark:bg-green-500/40"
-					>Send Message</button
-				>
-			</div>
-		</form>
-	</dialog>
+<dialog id="contact-modal" class="bg-dark dark:bg-mauve rounded-md border text-green-500">
+	<form id="contact-form" method="dialog">
+		<h2 class="my-10 text-center">Get in touch or just say hello</h2>
+		<div class="form-group">
+			<label for="name">( name )</label>
+			<input class="border" type="text" id="name" name="name" required />
+		</div>
+		<div class="form-group">
+			<label for="email">( email )</label>
+			<input class="border" type="email" id="email" name="email" required />
+		</div>
+		<div class="form-group">
+			<label for="message">( message )</label>
+			<textarea class="border" id="message" name="message" rows="4" required></textarea>
+		</div>
+		<div class="form-actions">
+			<button type="button" id="cancel-button" class="btn-secondary border">Cancel</button>
+			<button type="submit" class="btn-primary border bg-green-500/40 dark:bg-green-500/40"
+				>Send Message</button
+			>
+		</div>
+	</form>
+</dialog>
 
 <style>
 	.contact-container {
