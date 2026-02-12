@@ -5,19 +5,21 @@ const { env } = Astro.locals.runtime
 const api = env.APIURI
 const token = env.APITOKEN
 
-const response = await fetch(api, {
-	method: 'GET',
-	headers: {
-		Authorization: 'Bearer ' + token
-	}
-})
-
-if (!response.ok) {
-	throw new Error(`HTTP error! status: ${response.status}`)
+let movies: any[] = []
+try {
+	if (!api || !token) throw new Error('APIURI or APITOKEN not configured')
+	const response = await fetch(api, {
+		method: 'GET',
+		headers: {
+			Authorization: 'Bearer ' + token
+		}
+	})
+	if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+	const data = await response.json()
+	movies = data.response || []
+} catch (e) {
+	console.error('Movies fetch error:', e)
 }
-
-const data = await response.json()
-const movies = await data.response
 
 interface Movie {
 	title: string

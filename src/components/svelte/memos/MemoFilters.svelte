@@ -26,8 +26,7 @@
 	} = $props()
 </script>
 
-<div class="mb-6 space-y-3 sticky top-20 self-start">
-	<!-- Date filters and tags -->
+<div class="mb-6 space-y-3 self-start mt-10">
 	<div class="flex flex-wrap gap-4 items-center text-sm">
 		<div class="flex flex-wrap gap-2 items-center">
 			<label for="date-from" class="text-gray-500">From:</label>
