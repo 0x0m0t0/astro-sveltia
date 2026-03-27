@@ -38,12 +38,12 @@ const { title, class: className, ...rest } = Astro.props
 
 					trackableButtons.forEach((button) => {
 						button.addEventListener('click', () => {
-							if (typeof umami !== 'undefined') {
+							if (typeof window.rybbit !== 'undefined') {
 								const eventName = button.getAttribute('data-track') || 'Button Click'
 								const buttonId = button.id || ''
 								const buttonText = button.textContent?.trim() || ''
 
-								umami.track(eventName, {
+								window.rybbit.event(eventName, {
 									buttonId,
 									buttonText,
 									pageLocation: window.location.pathname
@@ -58,8 +58,9 @@ const { title, class: className, ...rest } = Astro.props
 
 		<script
 			is:inline
-			src="https://uma.farnientesystems.com/script.js"
-			data-website-id="11c5e721-1657-426c-9d1c-ff6db197db01"></script>
+			src="https://ryb.farnientesystems.com/api/script.js"
+			data-site-id="5e7d1efa1886"
+			defer></script>
 
 		<ClientRouter fallback="swap" />
 	</head>
