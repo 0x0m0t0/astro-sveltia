@@ -10,17 +10,17 @@
 		"sync": "svelte-kit sync"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-cloudflare": "^4.9.0",
-		"@sveltejs/kit": "^2.21.4",
-		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@sveltejs/adapter-cloudflare": "^7.2.8",
+		"@sveltejs/kit": "^2.58.0",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@types/d3-geo": "^3.1.0",
-		"svelte": "^5.50.2",
-		"svelte-check": "^4.2.1",
-		"typescript": "^5.9.3",
-		"vite": "^6.3.3"
+		"svelte": "^5.55.5",
+		"svelte-check": "^4.4.6",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.10"
 	},
 	"dependencies": {
-		"@tailwindcss/vite": "^4.1.18",
+		"@tailwindcss/vite": "^4.2.4",
 		"d3-drag": "^3.0.0",
 		"d3-geo": "^3.1.1",
 		"d3-interpolate": "^3.0.1",
@@ -29,10 +29,10 @@
 		"d3-zoom": "^3.0.0",
 		"gray-matter": "^4.0.3",
 		"keen-slider": "^6.8.6",
-		"prettier": "^3.8.1",
-		"prettier-plugin-tailwindcss": "^0.7.2",
-		"tailwindcss": "^4.1.18",
+		"prettier": "^3.8.3",
+		"prettier-plugin-tailwindcss": "^0.7.3",
+		"tailwindcss": "^4.2.4",
 		"topojson-client": "^3.1.0",
-		"wrangler": "^4.65.0"
+		"wrangler": "^4.85.0"
 	}
 }

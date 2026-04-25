@@ -9,6 +9,7 @@ functions/
 
 # dependencies
 node_modules/
+package-lock.json
 
 # logs
 npm-debug.log*
