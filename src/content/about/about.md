@@ -9,12 +9,6 @@ links:
   - label: are.na
     url: https://www.are.na/oxomoto/index
     handle: '@oxomoto'
-  - label: bluesky
-    url: https://bsky.app/profile/oxomoto.bsky.social
-    handle: '@oxomoto'
-  - label: mastodon
-    url: https://indieweb.social/@oxomoto
-    handle: '@oxomoto@indieweb.social'
 url: oxomoto.co
 services:
   - art direction

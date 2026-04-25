@@ -3,42 +3,36 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"sync": "astro sync",
-		"astro": "astro"
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"sync": "svelte-kit sync"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-cloudflare": "^4.9.0",
+		"@sveltejs/kit": "^2.21.4",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@types/d3-geo": "^3.1.0",
+		"svelte": "^5.50.2",
+		"svelte-check": "^4.2.1",
+		"typescript": "^5.9.3",
+		"vite": "^6.3.3"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/partytown": "^2.1.4",
-		"@astrojs/svelte": "^7.2.5",
-		"@astrojs/tailwind": "6.0.2",
 		"@tailwindcss/vite": "^4.1.18",
-		"astro": "5.17.2",
-		"astro-seo": "^1.1.0",
 		"d3-drag": "^3.0.0",
 		"d3-geo": "^3.1.1",
 		"d3-interpolate": "^3.0.1",
 		"d3-selection": "^3.0.0",
 		"d3-timer": "^3.0.1",
 		"d3-zoom": "^3.0.0",
+		"gray-matter": "^4.0.3",
 		"keen-slider": "^6.8.6",
 		"prettier": "^3.8.1",
-		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
-		"resend": "^6.9.2",
-		"svelte": "^5.50.2",
 		"tailwindcss": "^4.1.18",
 		"topojson-client": "^3.1.0",
-		"typescript": "^5.9.3",
 		"wrangler": "^4.65.0"
-	},
-	"resolutions": {
-		"string-width": "4.2.3"
-	},
-	"devDependencies": {
-		"@types/d3-geo": "^3.1.0"
 	}
 }
