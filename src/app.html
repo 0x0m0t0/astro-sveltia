@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/images/socials/favicon.svg" />
+		<script>
+			// Prevent flash of wrong theme
+			const theme = localStorage.getItem('theme'),
+				isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+			theme === 'dark' || (!theme && isSystemDark)
+				? document.documentElement.classList.add('dark')
+				: theme === 'light'
+					? document.documentElement.classList.remove('dark')
+					: theme === 'system' && isSystemDark && document.documentElement.classList.add('dark')
+		</script>
+		<script
+			async
+			src="https://ryb.farnientesystems.com/api/script.js"
+			data-site-id="5e7d1efa1886"
+		></script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

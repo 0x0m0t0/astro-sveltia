@@ -1,0 +1,1 @@
+export const env={"PUBLIC_MEMOS_API_URL":"https://log.oxomoto.co"}
