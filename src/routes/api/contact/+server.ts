@@ -1,10 +1,9 @@
 import type { RequestHandler } from './$types'
-import { env } from '$env/dynamic/private'
 
-export const POST: RequestHandler = async ({ request }) => {
-	const apiKey = env.RESEND_API_KEY
-	const senderEmail = env.SENDER_EMAIL
-	const recipientEmail = env.RECIPIENT_EMAIL
+export const POST: RequestHandler = async ({ request, platform }) => {
+	const apiKey = platform?.env?.RESEND_API_KEY
+	const senderEmail = platform?.env?.SENDER_EMAIL
+	const recipientEmail = platform?.env?.RECIPIENT_EMAIL
 
 	try {
 		const { name, email, message } = await request.json()
