@@ -1,9 +1,10 @@
 import type { RequestHandler } from './$types'
+import { env } from '$env/dynamic/private'
 
-export const POST: RequestHandler = async ({ request, platform }) => {
-	const apiKey = platform?.env?.RESEND_API_KEY
-	const senderEmail = platform?.env?.SENDER_EMAIL
-	const recipientEmail = platform?.env?.RECIPIENT_EMAIL
+export const POST: RequestHandler = async ({ request }) => {
+	const apiKey = env.RESEND_API_KEY
+	const senderEmail = env.SENDER_EMAIL
+	const recipientEmail = env.RECIPIENT_EMAIL
 
 	try {
 		const { name, email, message } = await request.json()
@@ -16,7 +17,13 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		}
 
 		if (!apiKey || !senderEmail || !recipientEmail) {
-			return new Response(JSON.stringify({ error: 'Contact API not configured' }), {
+			const missing = [
+				!apiKey && 'RESEND_API_KEY',
+				!senderEmail && 'SENDER_EMAIL',
+				!recipientEmail && 'RECIPIENT_EMAIL'
+			].filter(Boolean)
+			console.error('Missing env vars:', missing)
+			return new Response(JSON.stringify({ error: 'Contact API not configured', missing }), {
 				status: 503,
 				headers: { 'Content-Type': 'application/json' }
 			})
