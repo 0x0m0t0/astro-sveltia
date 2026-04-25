@@ -6,12 +6,12 @@
 	"tags": ["all", "selected", "print", "exhibition"],
 	"images": [
 		{
-			"image": "/POSTER_fresh_new_wouter-1449x2048.jpg",
+			"image": "/POSTER_fresh_new_wouter-1449x2048.webp",
 			"caption": "Poster for C van Confectie",
 			"alt": "Poster for C van Confectie"
 		},
 		{
-			"image": "/wouter_paijmans.jpg",
+			"image": "/wouter_paijmans.webp",
 			"caption": "Poster for C van Confectie",
 			"alt": "Poster for C van Confectie"
 		}

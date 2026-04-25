@@ -14,13 +14,21 @@
 	<meta property="og:title" content="oxomoto web developer and graphic designer" />
 	<meta property="og:type" content="website" />
 	<meta name="twitter:creator" content="@oxomoto" />
+	{#if data.lcpImage}
+		<link
+			rel="preload"
+			as="image"
+			href="/assets/media{data.lcpImage}"
+			type="image/webp"
+		/>
+	{/if}
 </svelte:head>
 
 <main class="flex flex-col">
 	<p class="desc prose rounded-md border p-4">
 		Freelance webdeveloper & graphic designer, based in Brussels, Belgium.
 	</p>
-	<Work projects={data.projects} />
+	<Work projects={data.projects} lcpImage={data.lcpImage} />
 </main>
 <a rel="me" class="hidden" href="https://indieweb.social/@oxomoto">Mastodon</a>
 

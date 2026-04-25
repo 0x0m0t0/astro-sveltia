@@ -24,5 +24,6 @@ export const load: PageServerLoad = async () => {
 	const sorted = projects
 		.filter((p) => p.publish !== false)
 		.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
-	return { projects: sorted }
+	const lcpImage = sorted[0]?.images[0]?.image ?? null
+	return { projects: sorted, lcpImage }
 }

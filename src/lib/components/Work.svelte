@@ -3,7 +3,7 @@
 	import Select from './Select.svelte'
 	import type { Project } from '../../routes/+page.server'
 
-	let { projects }: { projects: Project[] } = $props()
+	let { projects, lcpImage = null }: { projects: Project[]; lcpImage?: string | null } = $props()
 
 	let selectedTag = $state('selected')
 
@@ -82,9 +82,11 @@
 										alt="{media.alt} - image {index + 1}"
 										width={1200}
 										height={600}
+										sizes="(max-width: 768px) 100vw, 50vw"
 										class="h-auto w-full rounded-md object-contain transition-all duration-700"
 										loading={index === 0 ? 'eager' : 'lazy'}
-										decoding="async"
+										fetchpriority={media.image === lcpImage ? 'high' : 'auto'}
+										decoding={media.image === lcpImage ? 'sync' : 'async'}
 									/>
 									<span
 										class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
@@ -98,9 +100,11 @@
 									alt="{media.alt} - image {index + 1}"
 									width={1200}
 									height={600}
+									sizes="(max-width: 768px) 100vw, 50vw"
 									class="h-auto w-full rounded-md object-contain transition-all duration-700"
 									loading={index === 0 ? 'eager' : 'lazy'}
-									decoding="async"
+									fetchpriority={media.image === lcpImage ? 'high' : 'auto'}
+									decoding={media.image === lcpImage ? 'sync' : 'async'}
 								/>
 							{/if}
 						</div>
@@ -132,11 +136,7 @@
 </section>
 
 <style>
-	figcaption {
-		opacity: 1;
-		transition: all 0.5s ease-in-out;
-	}
-	.project-images {
+.project-images {
 		transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 	.projects {
