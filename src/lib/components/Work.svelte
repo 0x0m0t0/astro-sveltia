@@ -75,7 +75,26 @@
 								? 'mx-auto w-full'
 								: 'flex-1'} group"
 						>
-							<a href="/work/{p.slug}" data-track={p.title}>
+							{#if p.link}
+								<a href={p.link} target="_blank" rel="noopener" data-track={p.title}>
+									<img
+										src={'/assets/media' + media.image}
+										alt="{media.alt} - image {index + 1}"
+										width={1200}
+										height={600}
+										sizes="(max-width: 768px) 100vw, 50vw"
+										class="h-auto w-full rounded-md object-contain transition-all duration-700"
+										loading={index === 0 ? 'eager' : 'lazy'}
+										fetchpriority={media.image === lcpImage ? 'high' : 'auto'}
+										decoding={media.image === lcpImage ? 'sync' : 'async'}
+									/>
+									<span
+										class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
+									>
+										view project ↗
+									</span>
+								</a>
+							{:else}
 								<img
 									src={'/assets/media' + media.image}
 									alt="{media.alt} - image {index + 1}"
@@ -87,12 +106,7 @@
 									fetchpriority={media.image === lcpImage ? 'high' : 'auto'}
 									decoding={media.image === lcpImage ? 'sync' : 'async'}
 								/>
-								<span
-									class="extlink text-darkSand/70 m-1 hidden rounded bg-white/40 px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block"
-								>
-									view case study →
-								</span>
-							</a>
+							{/if}
 						</div>
 					{/each}
 				</div>
@@ -104,13 +118,17 @@
 						<h3 class="text-center">{p.title}</h3>
 						<p class="pt-1 text-center leading-4">{p.description}</p>
 					</div>
-					<a
-						class="mobile-link inline-block w-45 rounded border px-8 py-2 text-center hover:bg-white/40 md:hidden"
-						href="/work/{p.slug}"
-						data-track={p.title}
-					>
-						view case study →
-					</a>
+					{#if p.link}
+						<a
+							class="mobile-link inline-block w-45 rounded border px-8 py-2 text-center hover:bg-white/40 md:hidden"
+							href={p.link}
+							target="_blank"
+							rel="noopener"
+							data-track={p.title}
+						>
+							view project ↗
+						</a>
+					{/if}
 				</div>
 			</li>
 		{/each}
