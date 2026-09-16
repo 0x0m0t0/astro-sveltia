@@ -1,0 +1,20 @@
+{
+	"links": [
+		{ "label": "instagram", "url": "https://www.instagram.com/oxomoto/", "handle": "@oxomoto" },
+		{ "label": "github", "url": "https://github.com/0x0m0t0", "handle": "@0x0m0t0" },
+		{ "label": "are.na", "url": "https://www.are.na/oxomoto/index", "handle": "@oxomoto" }
+	],
+	"services": [
+		"art direction",
+		"web development",
+		"graphic design",
+		"branding",
+		"ui/ux",
+		"typography",
+		"seo",
+		"e-commerce"
+	],
+	"url": "oxomoto.co",
+	"title": "About",
+	"body": "Updating this now.\n\nDesign and development practice of Louis Desmet. Brussels based.\n\nOpen for projects & collaboration starting March 2026."
+}

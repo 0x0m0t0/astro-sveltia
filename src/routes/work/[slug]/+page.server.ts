@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { marked } from 'marked'
+import { renderBody } from '$lib/markdown'
 import type { EntryGenerator, PageServerLoad } from './$types'
 import type { Project } from '../../+page.server'
 
@@ -28,7 +28,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		throw error(404, 'Project not found')
 	}
 
-	const bodyHtml = project.body ? await marked.parse(project.body) : ''
+	const bodyHtml = renderBody(project.body ?? '')
 
 	const idx = ordered.findIndex((p) => p.slug === project.slug)
 	const prev = idx > 0 ? ordered[idx - 1] : null

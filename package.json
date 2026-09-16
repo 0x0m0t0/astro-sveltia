@@ -13,27 +13,14 @@
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/kit": "^2.65.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@types/d3-geo": "^3.1.0",
-		"svelte": "^5.56.3",
-		"svelte-check": "^4.6.0",
-		"typescript": "^6.0.3",
-		"vite": "^8.0.16"
-	},
-	"dependencies": {
 		"@tailwindcss/vite": "^4.3.1",
-		"d3-drag": "^3.0.0",
-		"d3-geo": "^3.1.1",
-		"d3-interpolate": "^3.0.1",
-		"d3-selection": "^3.0.0",
-		"d3-timer": "^3.0.1",
-		"d3-zoom": "^3.0.0",
-		"gray-matter": "^4.0.3",
-		"keen-slider": "^6.8.6",
-		"marked": "^18.0.5",
 		"prettier": "^3.8.4",
 		"prettier-plugin-tailwindcss": "^0.7.4",
+		"svelte": "^5.56.3",
+		"svelte-check": "^4.6.0",
 		"tailwindcss": "^4.3.1",
-		"topojson-client": "^3.1.0",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16",
 		"wrangler": "^4.100.0"
 	}
 }

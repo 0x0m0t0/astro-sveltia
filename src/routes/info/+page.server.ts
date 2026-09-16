@@ -1,14 +1,12 @@
 import type { PageServerLoad } from './$types'
-import aboutRaw from '../../content/about/about.md?raw'
-import matter from 'gray-matter'
+import about from '../../content/about/about.json'
 
 export const load: PageServerLoad = async () => {
-	const { data, content } = matter(aboutRaw)
 	return {
 		info: {
-			links: (data.links as { label: string; url: string; handle: string }[]) || [],
-			services: (data.services as string[]) || [],
-			body: content.trim()
+			links: about.links,
+			services: about.services,
+			body: about.body
 		}
 	}
 }
