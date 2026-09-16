@@ -76,6 +76,7 @@
 				</p>
 			</div>
 			<ul class="flex flex-wrap gap-4">
+				{console.log('movies',data.movies)}
 				{#each data.movies as m}
 					{@const date = new Date(m.watchedOn)}
 					{@const day = date.getDate()}

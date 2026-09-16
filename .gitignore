@@ -34,3 +34,5 @@ pnpm-debug.log*
 .wrangler/
 
 test/
+
+plan.md

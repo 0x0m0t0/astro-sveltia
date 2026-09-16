@@ -7,6 +7,7 @@ interface ProjectImage {
 }
 
 export interface Project {
+	slug: string
 	publish?: boolean
 	order?: number
 	title: string
@@ -15,12 +16,24 @@ export interface Project {
 	tags?: string[]
 	images: ProjectImage[]
 	link?: string
+	client?: string
+	role?: string
+	year?: string
+	services?: string[]
+	credits?: string
 	body?: string
+}
+
+function slugFromPath(path: string): string {
+	return path.split('/').pop()!.replace(/\.json$/, '')
 }
 
 export const load: PageServerLoad = async () => {
 	const modules = import.meta.glob('../content/projects/*.json', { eager: true })
-	const projects: Project[] = Object.values(modules).map((m: any) => m.default ?? m)
+	const projects: Project[] = Object.entries(modules).map(([path, m]) => ({
+		...((m as any).default ?? m),
+		slug: slugFromPath(path)
+	}))
 	const sorted = projects
 		.filter((p) => p.publish !== false)
 		.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))

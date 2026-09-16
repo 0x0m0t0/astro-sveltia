@@ -1,5 +1,5 @@
 ---
 activities:
-  - activity: Enjoying going for simple walks through the park to rest.
-  - activity: Decluttering everything digital, unnecessary files, bookmarks and apps.
+  - activity: Catching up on my film classics.
+  - activity: Preparing Korean soft-boiled eggs (Mayak Gyeran) and eating them all right away.
 ---
