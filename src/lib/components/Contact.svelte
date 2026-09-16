@@ -15,6 +15,21 @@
 		dialog?.close()
 	}
 
+	/**
+	 * Backdrop clicks land on the <dialog> itself, so `e.target` identifies them
+	 * — but so do clicks on the dialog's own 2rem padding, which shouldn't close
+	 * it. Comparing the pointer against the dialog's box separates the two.
+	 * Requiring `e.target === dialog` also filters out keyboard-triggered clicks
+	 * from inner buttons, which bubble up here reporting coordinates of (0, 0).
+	 */
+	function onDialogClick(e: MouseEvent) {
+		if (!dialog || e.target !== dialog) return
+		const { top, left, width, height } = dialog.getBoundingClientRect()
+		const inside =
+			e.clientX >= left && e.clientX <= left + width && e.clientY >= top && e.clientY <= top + height
+		if (!inside) closeModal()
+	}
+
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault()
 		submitting = true
@@ -45,33 +60,61 @@
 <button
 	id="open-modal"
 	data-track="Contact Form Open"
-	class="bg-mauve dark:bg-dark z-10 {marginY} max-w-80 cursor-pointer rounded border p-2 text-center transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] {className}"
+	class="bg-mauve dark:bg-dark hover-soft has-parens z-10 {marginY} max-w-80 cursor-pointer rounded border p-2 text-center {className}"
 	onclick={openModal}
 >
 	Get in touch
 </button>
 
-<dialog bind:this={dialog} class="bg-dark dark:bg-mauve rounded-md border text-green-500">
+<dialog
+	bind:this={dialog}
+	onclick={onDialogClick}
+	class="bg-mauve text-darkSand dark:bg-dark dark:text-darkText rounded-md border"
+>
 	<form onsubmit={handleSubmit}>
 		<h2 class="my-10 text-center">Get in touch or just say hello</h2>
 		<div class="form-group">
 			<label for="name">( name )</label>
-			<input class="border" type="text" id="name" name="name" bind:value={name} required />
+			<input
+				class="bg-dark/5 dark:bg-white/10 border"
+				type="text"
+				id="name"
+				name="name"
+				bind:value={name}
+				required
+			/>
 		</div>
 		<div class="form-group">
 			<label for="email">( email )</label>
-			<input class="border" type="email" id="email" name="email" bind:value={email} required />
+			<input
+				class="bg-dark/5 dark:bg-white/10 border"
+				type="email"
+				id="email"
+				name="email"
+				bind:value={email}
+				required
+			/>
 		</div>
 		<div class="form-group">
 			<label for="message">( message )</label>
-			<textarea class="border" id="message" name="message" rows={4} bind:value={message} required
+			<textarea
+				class="bg-dark/5 dark:bg-white/10 border"
+				id="message"
+				name="message"
+				rows={4}
+				bind:value={message}
+				required
 			></textarea>
 		</div>
 		<div class="form-actions">
-			<button type="button" class="btn-secondary border" onclick={closeModal}>Cancel</button>
+			<button
+				type="button"
+				class="btn-secondary hover-soft border"
+				onclick={closeModal}>Cancel</button
+			>
 			<button
 				type="submit"
-				class="btn-primary border bg-green-500/40 dark:bg-green-500/40"
+				class="btn-primary border bg-green-500/20 hover:bg-green-500/35 dark:bg-green-500/25 dark:hover:bg-green-500/40"
 				disabled={submitting}>{submitting ? 'Sending…' : 'Send Message'}</button
 			>
 		</div>
@@ -95,9 +138,13 @@
 			transform 0.3s ease;
 	}
 	dialog::backdrop {
-		background-color: rgba(0, 0, 0, 0.5);
+		/* Lighter scrim in light mode, deeper one in dark mode */
+		background-color: rgba(33, 32, 28, 0.35);
 		opacity: 0;
 		transition: opacity 0.3s ease;
+	}
+	:global(html.dark) dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.6);
 	}
 	dialog[open] {
 		opacity: 1;
@@ -119,7 +166,22 @@
 		width: 100%;
 		padding: 0.75rem;
 		border-radius: 0.375rem;
-		transition: border-color 0.2s;
+		color: inherit;
+		transition:
+			border-color 0.2s,
+			background-color 0.2s;
+	}
+	input::placeholder,
+	textarea::placeholder {
+		color: inherit;
+		opacity: 0.5;
+	}
+	input:focus-visible,
+	textarea:focus-visible,
+	.btn-primary:focus-visible,
+	.btn-secondary:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
 	}
 	.form-actions {
 		display: flex;
@@ -133,16 +195,5 @@
 		cursor: pointer;
 		border-radius: 0.25rem;
 	}
-	#open-modal:hover::before {
-		content: '(';
-		display: inline-block;
-		width: 1em;
-		margin-left: -1em;
-	}
-	#open-modal:hover::after {
-		content: ')';
-		display: inline-block;
-		width: 1em;
-		margin-right: -1em;
-	}
+	/* Parens come from the global `.has-parens` rule in app.css */
 </style>

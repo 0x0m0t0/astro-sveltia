@@ -8,7 +8,7 @@
 	<title>info — oxomoto</title>
 </svelte:head>
 
-<main class="flex h-full flex-grow flex-col items-center justify-between p-4">
+<main class="flex h-full grow flex-col items-center justify-between p-4">
 	<section class="flex max-w-2xl flex-col gap-2">
 		<div class="flex w-80 flex-col items-center gap-4">
 			<h2 class="bg-dark/10 w-80 rounded-md p-2 text-center dark:bg-white/10">info</h2>
@@ -24,7 +24,7 @@
 				</p>
 				<p>
 					For inquiries get in touch at ↗
-					<a href="mailto:i%6efo@oxomoto%2eco" class="mail">
+					<a href="mailto:i%6efo@oxomoto%2eco" class="mail hover-soft rounded px-1">
 						info
 						<span class="at"></span>
 						<span class="dom"></span>
@@ -37,8 +37,8 @@
 			<h3 class="bg-dark/10 w-80 rounded-md p-2 text-center dark:bg-white/10">Links</h3>
 			<ul class="links flex w-full flex-col items-center gap-2" aria-label="about links">
 				{#each data.info.links as link}
-					<li class="w-80 rounded-md border p-2 text-center">
-						<a href={link.url} class="hover:text-darkSand hover:underline">{link.label}</a>
+					<li class="w-80 rounded-md border">
+						<a href={link.url} class="hover-soft block rounded-md p-2 text-center">{link.label}</a>
 					</li>
 				{/each}
 			</ul>
@@ -71,18 +71,18 @@
 	.mail:hover {
 		text-decoration: none;
 	}
-	.services li::before,
-	.links li:hover::before {
+	/* Links get their parens from the global rule in app.css — only the
+	   (non-link) services need their own, always on. */
+	.services li::before {
 		content: '(';
 		display: inline-block;
-		width: 1em;
-		margin-left: -1em;
+		width: 1ch;
+		text-align: center;
 	}
-	.services li::after,
-	.links li:hover::after {
+	.services li::after {
 		content: ')';
 		display: inline-block;
-		width: 1em;
-		margin-right: -1em;
+		width: 1ch;
+		text-align: center;
 	}
 </style>

@@ -73,39 +73,73 @@
 </script>
 
 <div bind:this={wrapper} class="my-10 flex justify-center">
-	<div class="relative w-full max-w-80 md:w-[50vw]">
+	<!-- Sized to content but floored at 20rem, so picking a shorter tag
+	     ("print") doesn't shrink the control relative to "selected work" -->
+	<div class="relative w-fit max-w-full min-w-80">
 		<button
 			type="button"
 			aria-haspopup="listbox"
 			aria-expanded={open}
 			aria-label="Filter by category"
-			class="bg-mauve px-6 dark:bg-dark block w-full cursor-pointer rounded border p-2 text-left transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]"
+			class="bg-mauve dark:bg-dark hover-soft has-parens flex h-[var(--control-height)] w-full cursor-pointer items-center rounded border px-6 text-left"
 			onclick={toggle}
 			{onkeydown}
 		>
-			{current.label}
+			<span>{current.label}</span>
+			<!-- ml-auto rather than justify-between: the parenthesis pseudo-elements
+			     are flex items too, and space-between would fling them to the edges -->
+			<span class="ml-auto pl-4 tabular-nums">({current.count})</span>
 		</button>
 
 		{#if open}
+			<!-- No box of its own: each option is a standalone floating button -->
 			<ul
 				role="listbox"
 				aria-label="Filter options"
-				class="bg-mauve dark:bg-dark absolute left-0 right-0 z-50 mt-1 rounded border"
+				class="absolute right-0 left-0 z-50 mt-1 flex flex-col gap-1"
 			>
 				{#each options as option, i (option.value)}
 					<li
 						role="option"
 						aria-selected={option.value === selected}
-						class="cursor-pointer p-2 text-left transition-colors hover:bg-black/10 dark:hover:bg-white/10
-							{i === focusIndex ? 'bg-black/10 dark:bg-white/10' : ''}
+						style:--order={i}
+						class="bg-mauve dark:bg-dark hover-soft option flex h-[var(--control-height)] cursor-pointer items-center rounded border px-6 text-left
+							{i === focusIndex ? 'bg-[var(--color-hover)]' : ''}
 							{option.value === selected ? 'font-semibold' : ''}"
 						onclick={() => pick(option.value)}
 						onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && pick(option.value)}
 					>
-						{option.label} ({option.count})
+						<span>{option.label}</span>
+						<span class="ml-auto pl-4 tabular-nums">({option.count})</span>
 					</li>
 				{/each}
 			</ul>
 		{/if}
 	</div>
 </div>
+
+<style>
+	/* The list is absolutely positioned, so opening it costs no page reflow and
+	   the whole animation stays on transform/opacity. The options carry the
+	   motion themselves — there's no panel box left to fade in behind them. */
+	.option {
+		animation: option-in 0.34s cubic-bezier(0.16, 1, 0.3, 1) both;
+		animation-delay: calc(var(--order) * 45ms);
+	}
+	@keyframes option-in {
+		from {
+			opacity: 0;
+			transform: translateY(0.5rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.option {
+			animation: none;
+		}
+	}
+</style>

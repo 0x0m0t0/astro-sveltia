@@ -48,36 +48,21 @@
 		</ul>
 	</section>
 
-	<!-- <section class="w-80">
-		<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center dark:bg-white/10">Log</h2>
-		{#if data.latestMemo}
-			<MemoCard
-				memo={data.latestMemo}
-				selectedTags={[]}
-				onToggleTag={() => {}}
-				onOpenLightbox={() => {}}
-				apiUrl={data.memosApiUrl}
-			/>
-		{/if}
-		<a class="text-xs" href="/log">view more</a>
-	</section> -->
 
 	<section class="flex w-80 flex-col items-center justify-between">
-		<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center dark:bg-white/10">Films</h2>
+		<h2 class="bg-dark/10 my-4 w-full rounded-md p-2 text-center dark:bg-white/10">
+			Seen
+			<a
+				data-track="letterboxd"
+				href="https://letterboxd.com/oxomoto/"
+				rel="noopener"
+				class="hover-soft rounded px-1 underline">( letterboxd )</a
+			>
+		</h2>
 		<article class="flex flex-col w-full">
-			<div class="flex gap-2 pb-2">
-				<p class="bg-dark/10 w-full rounded-md p-2 text-center dark:bg-white/10">
-					Last logged on <a
-						data-track="letterboxd"
-						href="https://letterboxd.com/oxomoto/"
-						rel="noopener"
-						class="underline">letterboxd</a
-					>
-				</p>
-			</div>
+		
 			<ul class="flex flex-wrap gap-4">
-				{console.log('movies',data.movies)}
-				{#each data.movies as m}
+				{#each data.movies as m (m.link ?? m.title)}
 					{@const date = new Date(m.watchedOn)}
 					{@const day = date.getDate()}
 					{@const suffix = getOrdinalSuffix(day)}
@@ -108,7 +93,8 @@
 						{:else}
 							<p class="h-6 pt-1">&nbsp;</p>
 						{/if}
-						<a href={m.link}><h3>{m.title}</h3></a>
+						<!-- h3 inline so the paren pseudo-elements sit beside the title, not above it -->
+						<a href={m.link} class="hover-soft rounded px-1"><h3 class="inline">{m.title}</h3></a>
 						<p>{m.year}</p>
 						<p class="text-xs md:text-sm">{humanReadableDate}</p>
 						{#if m.stars === '★' || m.stars === '½'}

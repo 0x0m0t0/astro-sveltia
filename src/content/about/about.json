@@ -2,7 +2,8 @@
 	"links": [
 		{ "label": "instagram", "url": "https://www.instagram.com/oxomoto/", "handle": "@oxomoto" },
 		{ "label": "github", "url": "https://github.com/0x0m0t0", "handle": "@0x0m0t0" },
-		{ "label": "are.na", "url": "https://www.are.na/oxomoto/index", "handle": "@oxomoto" }
+		{ "label": "are.na", "url": "https://www.are.na/oxomoto/index", "handle": "@oxomoto" },
+		{ "label": "letterboxd", "url": "https://letterboxd.com/oxomoto/", "handle": "@oxomoto" }
 	],
 	"services": [
 		"art direction",
@@ -16,5 +17,5 @@
 	],
 	"url": "oxomoto.co",
 	"title": "About",
-	"body": "Updating this now.\n\nDesign and development practice of Louis Desmet. Brussels based.\n\nOpen for projects & collaboration starting March 2026."
+	"body": "Design and development practice of Louis Desmet. Brussels based.\n\nOpen for new projects starting autumn 2026."
 }

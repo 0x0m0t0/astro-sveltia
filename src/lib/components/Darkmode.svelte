@@ -38,7 +38,7 @@
 <div
 	id="dark-mode-toggle"
 	{style}
-	class="bg-mauve dark:bg-dark w-80 flex justify-center rounded-md border p-2 px-4 hover:cursor-pointer {className}"
+	class="bg-mauve dark:bg-dark hover-soft flex w-80 justify-center rounded-md border p-2 px-4 hover:cursor-pointer {className}"
 	role="button"
 	tabindex="0"
 	onclick={toggle}

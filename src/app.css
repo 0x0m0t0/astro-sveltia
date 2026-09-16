@@ -69,6 +69,61 @@ a {
 	text-decoration: none;
 }
 
+:root {
+	/* Outer height (border-box) shared by the nav bar and the work filter so the
+	   two controls line up. 24px icon + 2×8px padding + 2×1px border. */
+	--control-height: 2.625rem;
+
+	/* Hover fill. Opaque on purpose: a translucent tint reads as glass and lets
+	   images behind a control show through. One step off the page colour,
+	   keeping its warmth. */
+	--color-hover: #eeedf0;
+}
+html.dark {
+	--color-hover: #2c2b27;
+}
+
+/* Soft background on hover — the same affordance as the "view project" overlay,
+   applied to buttons and links across the site. Theme-aware rather than a flat
+   white wash, so it reads the same in light and dark. */
+.hover-soft {
+	transition: background-color 0.25s ease;
+}
+.hover-soft:hover,
+.hover-soft:focus-visible {
+	background-color: var(--color-hover);
+}
+
+/* Parenthesis affordance on links. An equal 1ch slot is reserved on both sides
+   at all times, so the glyphs appear symmetrically on hover without nudging the
+   label. Links wrapping an image are excluded — parens around a picture read as
+   a rendering bug. `.has-parens` opts a button in; `.is-current` pins them on. */
+a:not(:has(img))::before,
+a:not(:has(img))::after,
+.has-parens::before,
+.has-parens::after,
+.is-current::before,
+.is-current::after {
+	content: '';
+	display: inline-block;
+	width: 1ch;
+	text-align: center;
+}
+a:not(:has(img)):hover::before,
+a:not(:has(img)):focus-visible::before,
+.has-parens:hover::before,
+.has-parens:focus-visible::before,
+.is-current::before {
+	content: '(';
+}
+a:not(:has(img)):hover::after,
+a:not(:has(img)):focus-visible::after,
+.has-parens:hover::after,
+.has-parens:focus-visible::after,
+.is-current::after {
+	content: ')';
+}
+
 code {
 	font-family:
 		Menlo,
